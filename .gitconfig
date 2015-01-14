@@ -1,0 +1,148 @@
+[user]
+	name = Joel Kottas
+	email = sumnon@cj3.org
+
+[core]
+	editor = vim
+    abbrev = 16
+
+[merge]
+	tool = vimdiff
+	conflictstyle = diff3
+
+[rerere]
+	enabled = true
+
+[credential]
+	helper = cache
+
+[push]
+	default = simple
+
+[alias]
+	unstage = reset HEAD --
+
+    df = diff
+    dfc = diff --color=always
+    dt = difftool
+
+    ss = stash
+    sp = stash pop
+
+    st = status
+    stat = status
+
+    cm = commit -v
+    cma = commit -va
+
+    rb = rebase --stat
+    rbm = rebase --stat master
+    rbi = rebase -i
+    mg = "!f() { git merge --ff-only --stat \"$@\" || git merge --stat \
+        --no-commit --log \"$@\" && git commit -v; }; f"
+    mt = mergetool
+
+    wipe = !git commit -aqm 'WIPE COMMIT' && git reset --hard HEAD^
+    wp = !git wipe
+
+    sw = show
+
+# Logging
+
+    last = log -1
+    laste = log -1 --no-merges --patch --stat
+
+    # General overview log
+    lg = log --graph --abbrev=4 "--pretty=format:'%C(auto,yellow)#%h%C(auto,\
+reset) [%s]%C(auto,green)%d%C(auto,reset)'"
+
+    # Log for dates
+    lgd = log --graph --abbrev=4 \
+        "--pretty=format:'%C(auto,yellow)#%h%C(auto,reset) \
+[%s]%C(auto,green)%d%C(auto,reset)%n\
+<A: %C(auto,cyan)%ai%C(auto,reset) %C(auto,green)(%ar)%C(auto,reset)> \
+<C: %C(auto,cyan)%ci%C(auto,reset) %C(auto,green)(%cr)%C(auto,reset)>'"
+
+    # Log for names
+    lgn = log --graph --abbrev=4 \
+        "--pretty=format:'%C(auto,yellow)#%h%C(auto,reset) \
+[%s]%C(auto,green)%d%C(auto,reset)%n\
+<A: %C(auto,red)%aN%C(auto,reset) <%C(auto,magenta)%aE%C(auto,reset)>> \
+<C: %C(auto,red)%cN%C(auto,reset) <%C(auto,magenta)%cE%C(auto,reset)>>'"
+
+    # Logs for both names and dates
+
+    lgdn = log --graph --abbrev=4 \
+        "--pretty=format:'%C(auto,yellow)#%h%C(auto,reset) \
+[%s]%C(auto,green)%d%C(auto,reset)%n\
+<A: %C(auto,cyan)%ai%C(auto,reset) %C(auto,green)(%ar)%C(auto,reset)> \
+<C: %C(auto,cyan)%ci%C(auto,reset) %C(auto,green)(%cr)%C(auto,reset)>%n\
+<A: %C(auto,red)%aN%C(auto,reset) <%C(auto,magenta)%aE%C(auto,reset)>> \
+<C: %C(auto,red)%cN%C(auto,reset) <%C(auto,magenta)%cE%C(auto,reset)>>'"
+
+    lgnd = log --graph --abbrev=4 \
+        "--pretty=format:'%C(auto,yellow)#%h%C(auto,reset) \
+[%s]%C(auto,green)%d%C(auto,reset)%n\
+<A: %C(auto,red)%aN%C(auto,reset) <%C(auto,magenta)%aE%C(auto,reset)>> \
+<C: %C(auto,red)%cN%C(auto,reset) <%C(auto,magenta)%cE%C(auto,reset)>>%n\
+<A: %C(auto,cyan)%ai%C(auto,reset) %C(auto,green)(%ar)%C(auto,reset)> \
+<C: %C(auto,cyan)%ci%C(auto,reset) %C(auto,green)(%cr)%C(auto,reset)>'"
+
+    # TODO - logs for detailed descriptions
+
+    # TODO - customize this more, maybe
+    lge = log --patch --stat --no-merges
+
+    lga = !git lg --all
+    lgda = !git lgd --all
+    lgna = !git lgn --all
+    lgnda = !git lgnd --all
+    lgdna = !git lgdn --all
+
+    lgc = !git lg --color=always
+    lgdc = !git lgd --color=always
+    lgnc = !git lgn --color=always
+    lgndc = !git lgnd --color=always
+    lgdnc = !git lgdn --color=always
+
+    lgac = !git lg --all --color=always
+    lgdac = !git lgd --all --color=always
+    lgnac = !git lgn --all --color=always
+    lgndac = !git lgnd --all --color=always
+    lgdnac = !git lgdn --all --color=always
+
+    lgca = !git lg --color=always --all
+    lgdca = !git lgd --color=always --all
+    lgnca = !git lgn --color=always --all
+    lgndca = !git lgnd --color=always --all
+    lgdnca = !git lgdn --color=always --all
+
+# Branches
+
+    br = branch
+    co = checkout
+    com = checkout master
+    cob = checkout -b
+
+    current-branch = "!git symbolic-ref HEAD 2>/dev/null | \
+        sed 's/refs\\/heads\\///'"
+
+    branches = "!git for-each-ref --shell --format='%(refname)' refs/heads/ | \
+        sed 's/refs\\/heads\\///' | tr -d \\'"
+
+# Remotes
+
+    fa = fetch --all
+    up = pull --ff-only
+    upa = "!c=$(git current-branch); \
+        for branch in $(git branches); do \
+        git checkout $branch && git pull --ff-only 2>/dev/null; \
+        done; git checkout $c"
+
+    ps = push
+    pl = pull
+
+# Scripts in ~/Joel/programming/sh/git/
+
+    pull-requests = !sh ~/Joel/programming/sh/git/git-pull-requests.sh
+    pr = !git pull-requests
