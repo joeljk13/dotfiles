@@ -2,7 +2,7 @@ SHELL = /bin/sh
 .SUFFIXES:
 
 TARGETS = dot-vim dot-bash dot-lynx dot-tmux dot-git dot-mutt dot-pal \
-	dot-task dot-net system
+	dot-task dot-net
 
 .PHONY: all $(TARGETS)
 
