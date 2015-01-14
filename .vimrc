@@ -1,39 +1,27 @@
-" Disable the mouse
+set nocompatible
+
+filetype plugin indent on
+
 set mouse=
 
-" Make sure marks are stored
-set viminfo='32,f1
+set viminfo='1024,f1
+set history=1024
 
-" Make sure syntax highlighting is enabled
+set virtualedit=block
+
 syntax enable
 
-" Set the color scheme
 colorscheme joelcolors
 
-" Make sure backspace works properly
-set backspace=2
+set backspace=indent,eol,start
 
-" Tabs
-
-" Use 4 spaces for tabs
 set tabstop=4 shiftwidth=4 softtabstop=4 expandtab
-
-function! ExpandTab()
-    let l:names=split(expand('%'), '/')
-    if len(l:names) != 0 && l:names[-1] ==? 'Makefile'
-        set noexpandtab
-    endif
-endfunction
 
 augroup expandtabs
     autocmd!
-    autocmd BufFilePost * :call ExpandTab()
+    autocmd FileType make :setlocal noexpandtab
 augroup END
 
-" Set indent
-" cinoptions=Ls,:0,(0,g0
-" TODO - Customize this more, using indentexpr
-filetype indent on
 set cinoptions=Ls,:0,(0,g0
 
 augroup indenting
@@ -42,8 +30,7 @@ augroup indenting
     autocmd FileType html,php filetype indent off | set ai
 augroup END
 
-" Enable word wrap
-set formatoptions+=t
+set formatoptions+=ljt
 set textwidth=79
 
 augroup wordwrap
@@ -140,14 +127,14 @@ function! AddComment() range
     let l:c = a:firstline
     let l:min = indent(l:c)
 
-    " while l:c < a:lastline
-    "     let l:c = l:c + 1
-    "     let l:indent = indent(l:c)
+    while l:c < a:lastline
+    let l:c = l:c + 1
+    let l:indent = indent(l:c)
 
-    "     if l:indent < l:min && l:indent != 0
+    if l:indent < l:min && l:indent != 0
             let l:min = l:indent
         endif
-    endwhile " fjirsgfres
+    endwhile
 
     execute ':' . a:firstline . ',' . a:lastline . 's/.\{' . l:min . '\}/\0' . b:comment . ' '
 endfunction
