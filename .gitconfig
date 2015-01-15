@@ -142,6 +142,10 @@ reset) [%s]%C(auto,green)%d%C(auto,reset)'"
     ps = push
     pl = pull
 
+# Github
+
+    hub = "!f() { git clone \"https://github.com/$1/$2.git\"; }; f"
+
 # Scripts in ~/Joel/programming/sh/git/
 
     pull-requests = !sh ~/Joel/programming/sh/git/git-pull-requests.sh
