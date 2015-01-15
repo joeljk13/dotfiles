@@ -124,62 +124,36 @@ vnoremap <silent> jk <ESC>:call Save()<CR>
 onoremap <silent> jk <ESC>:call Save()<CR>
 cnoremap <silent> jk <ESC>:call Save()<CR>
 
-" Comments
-" F2 wraps in a comment
-" F3 removes a comment
-
 augroup comments
     autocmd!
-    autocmd FileType c,cpp,java,javascript :let b:comment='\/\/'
-    autocmd FileType python,ruby :let b:comment='#'
-    autocmd FileType lisp,scheme,asm :let b:comment=';'
-    autocmd FileType vim :let b:comment='"'
+    autocmd FileType c,cpp,java,javascript :let b:linecomment='\/\/'
+    autocmd FileType python,ruby :let b:linecomment='#'
+    autocmd FileType lisp,scheme,asm :let b:linecomment=';'
+    autocmd FileType vim :let b:linecomment='"'
 augroup END
 
-function! AddComment() range
+function! AddLineComment() range
     let l:c = a:firstline
     let l:min = indent(l:c)
 
     while l:c < a:lastline
-    let l:c = l:c + 1
-    let l:indent = indent(l:c)
+        let l:c = l:c + 1
+        let l:indent = indent(l:c)
 
-    if l:indent < l:min && l:indent != 0
+        if l:indent < l:min && l:indent != 0
             let l:min = l:indent
         endif
     endwhile
 
-    execute ':' . a:firstline . ',' . a:lastline . 's/.\{' . l:min . '\}/\0' . b:comment . ' '
+    execute ':' . a:firstline . ',' . a:lastline . 's/.\{' . l:min . '\}/\0'
+        \ . b:linecomment . ' '
 endfunction
 
-function! SubComment()
+function! SubLineComment()
     let l:linenum = line('.')
-    call setline(l:linenum, substitute(getline(l:linenum), '\V\(\s\*\)\('
-                \ . b:comment . '\s\*\)\+', '\1', ''))
-    " let l:c = a:first
-    " let l:linenum=line('.')
-    " let l:line=getline(l:linenum)
-    " let l:linelen=len(l:line)
-    " let l:newline=substitute(l:line, '\V\(\s\*\)\(' . s:comment . '\s\*\)\+',
-    "                         \ '\1', '')
-    " let l:newlinelen=len(l:newline)
-    " let l:cursorcol=getpos('.')[2]
-    " call setline(l:linenum, l:newline)
-    " let l:newcursorcol=l:cursorcol + l:newlinelen - l:linelen
-    " if l:newcursorcol < 0
-    "     normal! ^
-    " else
-    "     call cursor(l:linenum, l:newcursorcol)
-    " endif
+    call setline(l:linenum, substitute(getline(l:linenum), '\V' . b:linecomment
+                \ . ' ', '', ''))
 endfunction
-
-nnoremap <silent> <F2> :call AddComment()<CR>
-inoremap <silent> <F2> <ESC>:call AddComment()<CR>a
-vnoremap <silent> <F2> :call AddComment()<CR>
-
-nnoremap <silent> <F3> :call SubComment()<CR>
-inoremap <silent> <F3> <ESC>:call SubComment()<CR>a
-vnoremap <silent> <F3> :call SubComment()<CR>
 
 " Temporary stuff to help learning
 
