@@ -24,6 +24,17 @@ augroup expandtabs
     autocmd FileType make :setlocal noexpandtab
 augroup END
 
+" Options from sensible.vim
+set nrformats-=octal
+set laststatus=2
+set lazyredraw
+set ruler
+set showcmd
+set wildmenu
+set scrolloff=2
+set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
+set tabpagemax=64
+
 set cinoptions=Ls,:0,(0,g0
 
 augroup indenting
