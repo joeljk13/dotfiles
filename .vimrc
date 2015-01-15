@@ -1,5 +1,9 @@
 set nocompatible
 
+set sessionoptions-=options
+
+execute pathogen#infect()
+syntax enable
 filetype plugin indent on
 
 set mouse=
@@ -8,8 +12,6 @@ set viminfo='1024,f1
 set history=1024
 
 set virtualedit=block
-
-syntax enable
 
 colorscheme joelcolors
 
