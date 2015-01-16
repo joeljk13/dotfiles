@@ -2,9 +2,9 @@ SHELL = /bin/sh
 .SUFFIXES:
 
 TARGETS = dot-vim dot-bash dot-lynx dot-tmux dot-git dot-mutt dot-pal \
-	dot-task dot-net
+	dot-task dot-net make
 
-.PHONY: all $(TARGETS)
+.PHONY: all $(TARGETS) system
 
 all: $(TARGETS)
 
@@ -36,6 +36,9 @@ dot-task:
 
 dot-net:
 	cp .netrc ~
+
+make:
+	cp Makefile ~
 
 system:
 	sudo apt-get update
