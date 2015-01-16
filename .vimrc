@@ -126,27 +126,45 @@ cnoremap <silent> jk <ESC>:call Save()<CR>
 
 augroup comments
     autocmd!
-    autocmd FileType c,cpp,java,javascript :let b:linecomment='\/\/'
+    autocmd FileType c,cpp,java,javascript :let b:linecomment='//'
     autocmd FileType python,ruby :let b:linecomment='#'
     autocmd FileType lisp,scheme,asm :let b:linecomment=';'
     autocmd FileType vim :let b:linecomment='"'
 augroup END
 
 function! AddLineComment() range
-    let l:c = a:firstline
-    let l:min = indent(l:c)
+    let l:min = -1
+    let l:lines = range(a:firstline, a:lastline)
 
-    while l:c < a:lastline
-        let l:c = l:c + 1
-        let l:indent = indent(l:c)
+    " Get the minimal indent and set empty lines to just the comment char(s)
+    for l:line in l:lines
+        let l:linetext = getline(l:line)
 
-        if l:indent < l:min && l:indent != 0
-            let l:min = l:indent
+        if empty(l:linetext)
+            call setline(l:line, b:linecomment)
+        else
+            let l:indent = indent(l:line)
+            if l:indent < l:min || l:min < 0
+                let l:min = l:indent
+            endif
         endif
-    endwhile
+    endfor
 
-    execute ':' . a:firstline . ',' . a:lastline . 's/.\{' . l:min . '\}/\0'
-        \ . b:linecomment . ' '
+    " Indent comments to l:min at least and comment out non-commented out lines
+    for l:line in l:lines
+        let l:linetext = getline(l:line)
+        let l:indent = indent(l:line)
+
+        if l:linetext =~ '\V\^\s\*' . b:linecomment
+            let l:spaces = l:min - l:indent
+            if l:spaces > 0
+                call setline(l:line, printf('%' . l:spaces . 's', '') . l:linetext)
+            endif
+        else
+            call setline(l:line, substitute(l:linetext, '.\{' . l:min . '\}',
+                        \ '\0' . b:linecomment . ' ', ''))
+        endif
+    endfor
 endfunction
 
 function! SubLineComment()
