@@ -131,3 +131,5 @@ t()
 {
     task "$@" && sh ~/Joel/programming/sh/todo/todo.sh --task-to-pal
 }
+
+export PATH="$PATH:$HOME/Joel/programming/sh/git"

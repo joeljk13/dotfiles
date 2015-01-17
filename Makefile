@@ -2,7 +2,7 @@ SHELL = /bin/sh
 .SUFFIXES:
 
 DEF_TARGETS = dot-vim dot-bash dot-lynx dot-tmux dot-git dot-mutt dot-pal \
-	dot-task dot-net make
+	dot-task dot-net dot-profile make
 
 OTHER_TARGETS = all backup-all backup system
 
@@ -41,6 +41,9 @@ dot-task:
 
 dot-net:
 	cp $(DOTFILES_PATH)/.netrc $(HOME_PATH)
+
+dot-profile:
+	cp $(DOTFILES_PATH)/.profile $(HOME_PATH)
 
 make:
 	cp $(DOTFILES_PATH)/Makefile $(HOME_PATH)
