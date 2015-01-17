@@ -1,44 +1,49 @@
 SHELL = /bin/sh
 .SUFFIXES:
 
-TARGETS = dot-vim dot-bash dot-lynx dot-tmux dot-git dot-mutt dot-pal \
+DEF_TARGETS = dot-vim dot-bash dot-lynx dot-tmux dot-git dot-mutt dot-pal \
 	dot-task dot-net make
 
-.PHONY: all $(TARGETS) backup system
+OTHER_TARGETS = all backup system
 
-all: $(TARGETS)
+DOTFILES_PATH = ~/Joel/programming/dotfiles
+HOME_PATH = ~
+
+.PHONY: $(DEF_TARGETS) $(OTHER_TARGETS)
+
+all: $(DEF_TARGETS)
 
 dot-vim:
-	cp .vimrc ~
-	cp -r .vim ~
+	cp $(DOTFILES_PATH)/.vimrc $(HOME_PATH)
+	cp -r $(DOTFILES_PATH)/.vim $(HOME_PATH)
 
 dot-bash:
-	cp .bash* ~
+	cp $(DOTFILES_PATH)/.bash* $(HOME_PATH)
 
 dot-lynx:
-	cp .lynxrc ~
+	cp $(DOTFILES_PATH)/.lynxrc $(HOME_PATH)
 
 dot-tmux:
-	cp .tmux.conf ~
+	cp $(DOTFILES_PATH)/.tmux.conf $(HOME_PATH)
 
 dot-git:
-	cp .gitconfig ~
+	cp $(DOTFILES_PATH)/.gitconfig $(HOME_PATH)
 
 dot-mutt:
-	cp .muttrc ~
+	cp $(DOTFILES_PATH)/.muttrc $(HOME_PATH)
 
 dot-pal:
-	cp -r .pal ~
+	cp -r $(DOTFILES_PATH)/.pal $(HOME_PATH)
 
 dot-task:
-	cp -r .task ~
-	cp .taskrc ~
+	cp -r $(DOTFILES_PATH)/.task $(HOME_PATH)
+	cp $(DOTFILES_PATH)/.taskrc $(HOME_PATH)
 
 dot-net:
-	cp .netrc ~
+	cp $(DOTFILES_PATH)/.netrc $(HOME_PATH)
 
 make:
-	cp Makefile ~
+	cp $(DOTFILES_PATH)/Makefile $(HOME_PATH)
 
 backup:
 	cp backup Joel/programming/bash/home/
