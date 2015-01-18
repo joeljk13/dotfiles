@@ -17,11 +17,35 @@ colorscheme joelcolors
 
 set backspace=indent,eol,start
 
-set tabstop=4 shiftwidth=4 softtabstop=4 expandtab
+set tabstop=4 softtabstop=0 shiftwidth=4 expandtab
 
-augroup expandtabs
+function! SetTabs()
+    if &readonly
+        return
+    endif
+
+    if &filetype ==# "make"
+        setlocal noexpandtab
+        return
+    endif
+
+    let l:tabs = search("^\t\+\S", 'n')
+    " Ignore 1 space indents; they're probably just for formatting
+    let l:spaces = search("^ \{2,\}\S", 'n')
+
+    if l:tabs && l:spaces
+        echoerr 'This file uses both spaces and tabs for indentation.'
+    elseif l:tabs
+        setlocal noexpandtab
+    elseif l:spaces
+        " The first indent is probably the lowest level of indentation
+        let &shiftwidth = indent(l:spaces)
+    endif
+endfunction
+
+augroup settabs
     autocmd!
-    autocmd FileType make :setlocal noexpandtab
+    autocmd FileType * :call SetTabs()
 augroup END
 
 " Options from sensible.vim
