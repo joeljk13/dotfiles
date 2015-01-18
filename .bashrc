@@ -122,6 +122,8 @@ __git_complete g __git_main
 
 alias v='f -e vim -b viminfo'
 
+alias no='yes n'
+
 p()
 {
     pal "$@" && sh ~/Joel/programming/sh/todo/todo.sh --pal-to-task
