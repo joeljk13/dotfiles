@@ -2,7 +2,6 @@ set nocompatible
 
 set sessionoptions-=options
 
-execute pathogen#infect()
 syntax enable
 filetype plugin indent on
 
@@ -213,3 +212,5 @@ nnoremap <RIGHT> <NOP>
 "Disable Enter and Backspace
 nnoremap <CR> <NOP>
 nnoremap <BS> <NOP>
+
+execute pathogen#infect()
