@@ -2,6 +2,8 @@ set nocompatible
 
 set sessionoptions-=options
 
+let mapleader = "\<SPACE>"
+
 syntax enable
 filetype plugin indent on
 
