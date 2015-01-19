@@ -57,7 +57,7 @@ set lazyredraw
 set ruler
 set showcmd
 set wildmenu
-set wildmode=longest:full
+set wildmode=longest:full,full
 set scrolloff=2
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 set tabpagemax=64
