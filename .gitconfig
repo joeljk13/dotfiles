@@ -37,7 +37,7 @@
     stat = status
 
     cm = commit -v
-    cma = commit -va
+    cma = !git add . && git commit -v
 
     rb = rebase --stat
     rbm = rebase --stat master
