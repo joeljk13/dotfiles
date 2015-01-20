@@ -20,6 +20,9 @@
     default = simple
 
 [alias]
+    abbrev-head = !echo 'ref: HEAD' >.git/h
+    no-abbrev-head = !rm -f .git/h
+
     unstage = reset HEAD --
 
     df = diff
