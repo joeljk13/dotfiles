@@ -31,6 +31,7 @@ dot-tmux:
 
 dot-git:
 	cp $(DOTFILES_PATH)/.gitconfig $(HOME_PATH)
+	cp $(DOTFILES_PATH)/.gitignore $(HOME_PATH)
 
 dot-mutt:
 	cp $(DOTFILES_PATH)/.muttrc $(HOME_PATH)

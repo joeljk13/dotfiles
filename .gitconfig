@@ -5,6 +5,7 @@
 [core]
     editor = vim
     abbrev = 16
+    excludesfile = /home/joel/.gitignore
 
 [merge]
     tool = vimdiff

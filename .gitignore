@@ -1,0 +1,28 @@
+# Typical ctags files
+TAGS
+[Tt]ags
+
+# C/C++ pre-processed, object, and assembly files
+*.[ios]
+*.ii
+
+# Vim swap files
+.*.swp
+
+# I ususally have a pdf-aux directory for Latex's files that compilation
+# generates
+PDF-AUX/
+[Pp]df-[Aa]ux/
+PDF_AUX/
+[Pp]df_[Aa]ux/
+PDFAUX/
+[Pp]df[Aa]ux/
+
+# Test and temporary files
+TEST*
+[Tt]est
+TEMP*
+[Tt]emp
+TMP*
+[Tt]mp
+FILE*
