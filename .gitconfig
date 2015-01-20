@@ -6,6 +6,11 @@
     editor = vim
     abbrev = 16
     excludesfile = /home/joel/.gitignore
+    pager = less -R
+    whitespace = space-before-tab,trailing-space
+
+[add]
+    ignoreErrors = true
 
 [merge]
     tool = vimdiff
@@ -22,6 +27,23 @@
 
 [push]
     default = simple
+
+[pull]
+    rebase = true
+
+[diff]
+    mnemonicprefix = true
+    renames = copies
+
+[advice]
+    pushUpdateRejected = false
+    statusHints = false
+    commitBeforeMerge = false
+    resolveConflict = false
+    detachedHead = false
+
+[help]
+    autocorrect = 15
 
 [alias]
     abbrev-head = !echo 'ref: HEAD' >.git/h
