@@ -6,7 +6,7 @@
     editor = vim
     abbrev = 16
     excludesfile = /home/joel/.gitignore
-    pager = less -R
+    pager = less -XFR
     whitespace = space-before-tab,trailing-space
 
 [add]
