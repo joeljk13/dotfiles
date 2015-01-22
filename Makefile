@@ -1,8 +1,8 @@
 SHELL = /bin/sh
 .SUFFIXES:
 
-DEF_TARGETS = dot-vim vim-plugins dot-bash dot-lynx dot-tmux dot-git dot-mutt \
-	dot-pal dot-task dot-net dot-profile make
+DEF_TARGETS = dot-vim vim-plugins dot-bash dot-zsh dot-lynx dot-tmux dot-git \
+	dot-mutt dot-pal dot-task dot-net dot-profile make
 
 OTHER_TARGETS = all backup-all backup system
 
@@ -22,6 +22,9 @@ vim-plugins:
 
 dot-bash:
 	cp $(DOTFILES_PATH)/.bash* $(HOME_PATH)
+
+dot-zsh:
+	cp $(DOTFILES_PATH)/.zsh* $(HOME_PATH)
 
 dot-lynx:
 	cp $(DOTFILES_PATH)/.lynxrc $(HOME_PATH)
