@@ -31,9 +31,9 @@ function! SetTabs()
         return
     endif
 
-    let l:tabs = search("^\t\+\S", 'n')
+    let l:tabs = search('^\t\+\S', 'n')
     " Ignore 1 space indents; they're probably just for formatting
-    let l:spaces = search("^ \{2,\}\S", 'n')
+    let l:spaces = search('^ \{2,\}\S', 'n')
 
     if l:tabs && l:spaces
         echoerr 'This file uses both spaces and tabs for indentation.'
