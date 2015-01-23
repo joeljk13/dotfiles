@@ -78,3 +78,21 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+eval "$(fasd --init auto)"
+
+alias g=git
+alias v='f -e vim -b viminfo'
+alias no='yes n'
+
+p()
+{
+    pal "$@" && sh ~/Joel/programming/sh/todo/todo.sh --pal-to-task
+}
+
+t()
+{
+    task "$@" && sh ~/Joel/programming/sh/todo/todo.sh --task-to-pal
+}
+
+export PATH="$PATH:$HOME/Joel/programming/sh/git"
