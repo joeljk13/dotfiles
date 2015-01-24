@@ -7,6 +7,11 @@ let mapleader = "\<SPACE>"
 syntax enable
 filetype plugin indent on
 
+augroup syntax_highlighting
+    autocmd!
+    autocmd BufEnter * :syntax sync fromstart
+augroup END
+
 set mouse=
 
 set viminfo='1024,f1
