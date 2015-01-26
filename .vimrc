@@ -162,6 +162,7 @@ augroup comments
     autocmd FileType python,ruby :let b:linecomment='#'
     autocmd FileType lisp,scheme,asm :let b:linecomment=';'
     autocmd FileType vim :let b:linecomment='"'
+    autocmd FileType tex :let b:linecomment='%'
 augroup END
 
 function! AddLineComment() range
