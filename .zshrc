@@ -96,3 +96,8 @@ t()
 }
 
 export PATH="$PATH:$HOME/Joel/programming/sh/git"
+
+c()
+{
+    echo "jkottas@cycle$1.csug.rochester.edu"
+}
