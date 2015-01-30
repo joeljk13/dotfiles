@@ -27,7 +27,7 @@ set backspace=indent,eol,start
 set tabstop=4 softtabstop=0 shiftwidth=4 expandtab
 
 function! SetTabs()
-    if &readonly
+    if &readonly || &buftype ==# "nowrite"
         return
     endif
 
