@@ -47,6 +47,7 @@ function! SetTabs()
     elseif l:spaces
         " The first indent is probably the lowest level of indentation
         let &shiftwidth = indent(l:spaces)
+        let &tabstop = &shiftwidth
     endif
 endfunction
 
