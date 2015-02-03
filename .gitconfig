@@ -52,6 +52,9 @@
     unstage = reset HEAD --
 
     df = diff
+    dfw = diff --word-diff
+    dfcw = diff --word-diff=color
+    dfwc = diff --word-diff --color=always
     dfc = diff --color=always
     dt = difftool -y
 
