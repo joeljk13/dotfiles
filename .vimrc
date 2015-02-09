@@ -20,7 +20,7 @@ set history=1024
 set virtualedit=block
 
 set t_Co=256
-colorscheme joelcolors
+colorscheme delek
 
 set backspace=indent,eol,start
 
