@@ -43,7 +43,7 @@
     detachedHead = false
 
 [help]
-    autocorrect = 15
+    autocorrect = 30
 
 [alias]
     abbrev-head = !echo 'ref: HEAD' >.git/h
