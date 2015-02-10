@@ -113,6 +113,18 @@ if ! shopt -oq posix; then
   fi
 fi
 
+if [ -d "$HOME/Joel/programming/sh/git" ]; then
+    export PATH="$PATH:$HOME/Joel/programming/sh/git"
+fi
+
+if [ -d "$HOME/bin" ]; then
+    export PATH="$PATH:$HOME/bin"
+fi
+
+if [ -d "$HOME/usr/bin" ]; then
+    export PATH="$PATH:$HOME/usr/bin"
+fi
+
 eval "$(fasd --init auto)"
 
 alias g=git
@@ -133,15 +145,3 @@ t()
 {
     task "$@" && sh ~/Joel/programming/sh/todo/todo.sh --task-to-pal
 }
-
-if [ -d "$HOME/Joel/programming/sh/git" ]; then
-    export PATH="$PATH:$HOME/Joel/programming/sh/git"
-fi
-
-if [ -d "$HOME/bin" ]; then
-    export PATH="$PATH:$HOME/bin"
-fi
-
-if [ -d "$HOME/usr/bin" ]; then
-    export PATH="$PATH:$HOME/usr/bin"
-fi
