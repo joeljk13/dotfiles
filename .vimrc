@@ -90,7 +90,7 @@ augroup END
 nnoremap <Space> zz
 
 " Search Options
-set incsearch
+set incsearch nohlsearch
 
 augroup spelling
     autocmd!
