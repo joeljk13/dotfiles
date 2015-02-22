@@ -12,7 +12,7 @@ augroup syntax_highlighting
     autocmd BufEnter * :syntax sync fromstart
 augroup END
 
-set mouse=n
+silent! set mouse=n
 
 set viminfo='1024,f1
 set history=1024
