@@ -59,6 +59,8 @@ csc:
 		$(DOTFILES_PATH)/.lynxrc $(DOTFILES_PATH)/update-vim-plugins \
 		jkottas@cycle2.csug.rochester.edu:~
 	scp -r $(HOME_PATH)/Joel/software/vim-plugins/ jkottas@cycle2.csug.rochester.edu:~/
+	# Don't have the .git directories taking up space
+	ssh jkottas@cycle2.csug.rochester.edu 'find ~/vim-plugins -name .git -type d -exec rm -rf "{}" +'
 
 make:
 	cp $(DOTFILES_PATH)/Makefile $(HOME_PATH)
