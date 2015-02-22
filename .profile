@@ -16,7 +16,14 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/Joel/programming/sh/git" ]; then
+    PATH="$PATH:$HOME/Joel/programming/sh/git"
+fi
+
+if [ -d "$HOME/usr/bin" ]; then
+    PATH="$HOME/usr/bin:$PATH"
+fi
+
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
