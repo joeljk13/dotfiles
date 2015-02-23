@@ -33,8 +33,7 @@ dot-tmux:
 	cp $(DOTFILES_PATH)/.tmux.conf $(HOME_PATH)
 
 dot-git:
-	cp $(DOTFILES_PATH)/.gitconfig $(HOME_PATH)
-	cp $(DOTFILES_PATH)/.gitignore $(HOME_PATH)
+	cp $(DOTFILES_PATH)/.gitconfig $(DOTFILES_PATH)/.gitignore $(HOME_PATH)
 
 dot-mutt:
 	cp $(DOTFILES_PATH)/.muttrc $(HOME_PATH)
@@ -56,7 +55,8 @@ dot-profile:
 csc:
 	# Use cycle2 because that's the one I've found to be least crowded
 	scp -r $(DOTFILES_PATH)/.tmux.conf $(DOTFILES_PATH)/.vim* \
-		$(DOTFILES_PATH)/.git[ci]* $(DOTFILES_PATH)/.bash* $(DOTFILES_PATH)/.zsh* \
+		$(DOTFILES_PATH)/.gitconfig $(DOTFILES_PATH)/.gitignore \
+		$(DOTFILES_PATH)/.bash* $(DOTFILES_PATH)/.zsh* \
 		$(DOTFILES_PATH)/.profile $(DOTFILES_PATH)/.lynxrc \
 		$(DOTFILES_PATH)/update-vim-plugins jkottas@cycle2.csug.rochester.edu:~
 	scp -r $(HOME_PATH)/Joel/software/vim-plugins/ jkottas@cycle2.csug.rochester.edu:~/
