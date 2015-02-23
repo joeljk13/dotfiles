@@ -49,15 +49,14 @@ dot-net:
 	cp $(DOTFILES_PATH)/.netrc $(HOME_PATH)
 
 dot-profile:
-	cp $(DOTFILES_PATH)/.profile $(DOTFILES_PATH)/.bash_profile \
-		$(DOTFILES_PATH)/.zprofile $(HOME_PATH)
+	cp $(DOTFILES_PATH)/.*profile $(HOME_PATH)
 
 csc:
 	# Use cycle2 because that's the one I've found to be least crowded
 	scp -r $(DOTFILES_PATH)/.tmux.conf $(DOTFILES_PATH)/.vim* \
 		$(DOTFILES_PATH)/.gitconfig $(DOTFILES_PATH)/.gitignore \
 		$(DOTFILES_PATH)/.bash* $(DOTFILES_PATH)/.zsh* \
-		$(DOTFILES_PATH)/.profile $(DOTFILES_PATH)/.lynxrc \
+		$(DOTFILES_PATH)/.*profile $(DOTFILES_PATH)/.lynxrc \
 		$(DOTFILES_PATH)/update-vim-plugins jkottas@cycle2.csug.rochester.edu:~
 	scp -r $(HOME_PATH)/Joel/software/vim-plugins/ jkottas@cycle2.csug.rochester.edu:~/
 	# Don't have the .git directories taking up space
