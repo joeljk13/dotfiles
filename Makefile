@@ -50,7 +50,8 @@ dot-net:
 	cp $(DOTFILES_PATH)/.netrc $(HOME_PATH)
 
 dot-profile:
-	cp $(DOTFILES_PATH)/.profile $(HOME_PATH)
+	cp $(DOTFILES_PATH)/.profile $(DOTFILES_PATH)/.bash_profile \
+		$(DOTFILES_PATH)/.zprofile $(HOME_PATH)
 
 csc:
 	# Use cycle2 because that's the one I've found to be least crowded
