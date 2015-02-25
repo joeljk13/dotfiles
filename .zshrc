@@ -102,4 +102,4 @@ c()
     echo "jkottas@cycle$1.csug.rochester.edu"
 }
 
-source .zprofile
+source ~/.zprofile
