@@ -7,6 +7,20 @@ let mapleader = "\<SPACE>"
 syntax enable
 filetype plugin indent on
 
+" Toggle among neither, 'number', and both of 'number' and 'relativenumber'.
+function! SetNumber()
+    if !&number && !&relativenumber
+        set number
+    elseif &relativenumber
+        set norelativenumber nonumber
+    else
+        " &number && !&relativenumber
+        set relativenumber
+    endif
+endfunction
+
+nnoremap <leader>n :call SetNumber()<CR>
+
 augroup syntax_highlighting
     autocmd!
     autocmd BufEnter * :syntax sync fromstart
