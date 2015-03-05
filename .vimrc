@@ -21,6 +21,17 @@ endfunction
 
 nnoremap <leader>n :call SetNumber()<CR>
 
+" Use Hx and Lx like Fx and fx in normal mode, but H and L will search across
+" lines.
+
+for s:c in split('abcdefghijklmnopqrstuvwxyz0123456789`~!@#$%^&*()-_=+[{]}\;:''",<.>/? ', '\zs')
+    execute 'nnoremap H' . s:c . ' ?' . s:c . '<CR>'
+    execute 'nnoremap L' . s:c . ' /' . s:c . '<CR>'
+endfor
+
+nnoremap H<BAR> ?<BAR><CR>
+nnoremap L<BAR> /<BAR><CR>
+
 augroup syntax_highlighting
     autocmd!
     autocmd BufEnter * :syntax sync fromstart
