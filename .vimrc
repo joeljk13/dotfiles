@@ -233,6 +233,12 @@ function! SubLineComment()
                 \ . ' ', '', ''))
 endfunction
 
+function! Execute() range
+    let l:lines =  join(getbufline("%", a:firstline, a:lastline), "\n")
+    let l:script = substitute(l:lines, '\n\s*\', '', 'g')
+    execute l:script
+endfunction
+
 " Temporary stuff to help learning
 
 " Disable h,j ,k, and l, and the arrow keys
