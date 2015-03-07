@@ -68,6 +68,9 @@
     cma = !git add . && git commit -v
 
     rb = rebase --stat
+    rba = rebase --abort
+    rbc = rebase --continue
+    rbs = rebase --skip
     rbm = rebase --stat master
     rbi = rebase -i
     mg = "!f() { git merge --ff-only --stat \"$@\" || git merge --stat \
