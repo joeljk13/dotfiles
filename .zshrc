@@ -47,6 +47,9 @@ DISABLE_AUTO_UPDATE="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 
+fpath=(~/.zsh $fpath)
+autoload -U ~/.zsh/*(:t)
+
 # User configuration
 
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/joel/Joel/programming/sh/git"
