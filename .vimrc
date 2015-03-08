@@ -258,20 +258,4 @@ function! Execute() range
     execute l:script
 endfunction
 
-" Temporary stuff to help learning
-
-" Disable h,j ,k, and l, and the arrow keys
-nnoremap h <NOP>
-nnoremap j <NOP>
-nnoremap k <NOP>
-nnoremap l <NOP>
-nnoremap <UP> <NOP>
-nnoremap <DOWN> <NOP>
-nnoremap <LEFT> <NOP>
-nnoremap <RIGHT> <NOP>
-
-"Disable Enter and Backspace
-nnoremap <CR> <NOP>
-nnoremap <BS> <NOP>
-
 execute pathogen#infect()
