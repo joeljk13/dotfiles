@@ -57,6 +57,18 @@ let g:syntastic_cpp_compiler_options = g:syntastic_c_compiler_options
 
 let g:solarized_termcolors=256
 
+" Airline
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#whitespace#mixed_indent_algo = 1
+let g:airline#extensions#whitespace#enabled = 1
+" I don't understand how/whether indent checking works yet
+let g:airline#extensions#whitespace#checks =  ['indent', 'trailing']
+let g:airline#extensions#tabline#show_tabs = 0
+let g:airline#extensions#tabline#buffer_min_count = 2
+let g:airline#extensions#tabline#show_buffers = 1
+" let g:airline#extensions#tmuxline#enabled = 1
+
 execute pathogen#infect()
 
 " Colors and syntax highlighting
