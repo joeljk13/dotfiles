@@ -1,11 +1,21 @@
-set nocompatible
+" Essential settings
+"
+" These can be abbreviated with:
+" se nocp bs=2 | sy enable
+" filetype plugin indent on
+"
+" Also make sure to do
+" noremap jk <esc>
+" noremap! jk <esc>
+" when this .vimrc isn't available.
+
+set nocompatible backspace=indent,eol,start
+syntax enable
+filetype plugin indent on
 
 set sessionoptions-=options
 
 let mapleader = "\<SPACE>"
-
-syntax enable
-filetype plugin indent on
 
 " Toggle among neither, 'number', and both of 'number' and 'relativenumber'.
 function! SetNumber()
@@ -45,8 +55,6 @@ set history=1024
 set virtualedit=block
 
 colorscheme delek
-
-set backspace=indent,eol,start
 
 set nojoinspaces
 
