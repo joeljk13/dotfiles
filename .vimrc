@@ -80,6 +80,8 @@ nnoremap <leader>n :call <sid>SetNumber()<cr>
 
 " Colors and syntax highlighting
 
+let g:solarized_termcolors=256
+set background=dark
 colorscheme delek
 
 augroup syntax_highlighting
