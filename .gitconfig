@@ -56,6 +56,8 @@
     dfcw = diff --word-diff=color
     dfwc = diff --word-diff --color=always
     dfc = diff --color=always
+    dfi = diff --cached
+    dfic = diff --cached --color=always
     dt = difftool -y
 
     ss = stash
