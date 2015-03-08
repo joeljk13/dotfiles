@@ -145,6 +145,7 @@ nnoremap <leader><space> zz
 augroup vimrc_spelling
     autocmd!
     autocmd FileType tex,gitcommit,text setlocal spell
+    autocmd FileType * if !IsWritable() | setlocal nospell | endif
 augroup END
 
 " Saving
