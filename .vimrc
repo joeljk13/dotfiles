@@ -111,6 +111,7 @@ set scrolloff=2
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 set tabpagemax=64
 set cinoptions=Ls,:0,(0,g0
+set timeoutlen=150
 
 " Search settings
 
@@ -148,37 +149,26 @@ augroup END
 
 " Saving
 
-function! Hash(str)
+function! s:Hash(str)
     return split(system('sha1sum', a:str), ' ')[0]
 endfunction
 
-function! GetCurrentHash()
-    return Hash(' ' . join(getline(1, '$'), "\n"))
+function! s:BufHash()
+    return s:Hash(' ' . join(getline(1, '$'), "\n"))
 endfunction
 
-function! IsSaved()
-    return b:hash ==? GetCurrentHash()
-endfunction
-
-function! UpdateSavedHash()
-    let b:hash=GetCurrentHash()
-endfunction
-
-function! Save()
-    let l:hash=GetCurrentHash()
-    if l:hash !=? b:hash
-        let b:hash=l:hash
+function! s:Save()
+    let l:hash = s:BufHash()
+    if l:hash != b:hash
+        let b:hash = l:hash
         write
     endif
-endfunction
-
-function! ResetSaving()
-    call UpdateSavedHash()
+    set nomodified
 endfunction
 
 augroup vimrc_hashing
     autocmd!
-    autocmd BufNewFile,BufReadPost,StdinReadPost * :call ResetSaving()
+    autocmd BufNewFile,BufRead * let b:hash = s:BufHash()
 augroup END
 
 function! TrimL(str)
@@ -193,20 +183,17 @@ function! Trim(str)
     return TrimR(TrimL(a:str))
 endfunction
 
-" Trims the Current line of trailing whitespace
-function! TrimC()
+" Trims the current line of trailing whitespace
+function! s:TrimC()
     let l:line = line('.')
     call setline(l:line, TrimR(getline(l:line)))
 endfunction
 
-" Mapping jk to ESC
-set timeoutlen=150
-
-nnoremap <silent> jk :call Save()<cr>
-inoremap <silent> jk <esc>:call TrimC()<bar>write<bar>call UpdateSavedHash()<cr>
-vnoremap <silent> jk <esc>:call Save()<cr>
-onoremap <silent> jk <esc>:call Save()<cr>
-cnoremap <silent> jk <esc>:call Save()<cr>
+nnoremap <silent> jk :call <sid>Save()<cr>
+inoremap <silent> jk <esc>:call <sid>TrimC()<bar>call <sid>Save()<cr>
+vnoremap <silent> jk <esc>
+onoremap <silent> jk <esc>
+cnoremap <silent> jk <esc>
 
 augroup vimrc_comments
     autocmd!
