@@ -111,7 +111,7 @@ set scrolloff=2
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 set tabpagemax=64
 set cinoptions=Ls,:0,(0,g0
-set timeoutlen=150
+set timeout ttimeout timeoutlen=1000 ttimeoutlen=100
 
 " Search settings
 
@@ -190,11 +190,12 @@ function! s:TrimC()
     call setline(l:line, TrimR(getline(l:line)))
 endfunction
 
-nnoremap <silent> jk :call <sid>Save()<cr>
-inoremap <silent> jk <esc>:call <sid>TrimC()<bar>call <sid>Save()<cr>
-vnoremap <silent> jk <esc>
-onoremap <silent> jk <esc>
-cnoremap <silent> jk <esc>
+set <f13>=jk
+nnoremap <silent> <f13> :call <sid>Save()<cr>
+inoremap <silent> <f13> <esc>:call <sid>TrimC()<bar>call <sid>Save()<cr>
+vnoremap <silent> <f13> <esc>
+onoremap <silent> <f13> <esc>
+cnoremap <silent> <f13> <esc>
 
 augroup vimrc_comments
     autocmd!
