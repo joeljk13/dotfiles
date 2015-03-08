@@ -22,6 +22,42 @@ function! IsWritable()
     return !&readonly && &buftype == "" && &modifiable
 endfunction
 
+" Tabs and spaces settings for indenting
+
+set tabstop=4 softtabstop=0 shiftwidth=4 expandtab
+
+function! s:AutoTab()
+    if !IsWritable()
+        return
+    endif
+
+    if &filetype == "make"
+        setlocal noexpandtab
+        return
+    endif
+
+    let l:tabs = search('^\t\+\S', 'n')
+    " Ignore 1 space indents; they're probably just for formatting
+    let l:spaces = search('^ \{2,\}\S', 'n')
+
+    if l:tabs && l:spaces
+        echoerr 'This file uses both spaces and tabs for indentation.'
+    elseif l:tabs
+        setlocal noexpandtab
+    elseif l:spaces
+        " The first indent is probably the lowest level of indentation
+        let &l:shiftwidth = indent(l:spaces)
+        let &l:tabstop = &l:shiftwidth
+    " else
+    "   use user-set defaults
+    endif
+endfunction
+
+augroup vimrc_autotab
+    autocmd!
+    autocmd FileType * call s:AutoTab()
+augroup END
+
 set sessionoptions-=options
 
 " Toggle among neither, 'number', and both of 'number' and 'relativenumber'.
@@ -64,38 +100,6 @@ set virtualedit=block
 colorscheme delek
 
 set nojoinspaces
-
-set tabstop=4 softtabstop=0 shiftwidth=4 expandtab
-
-function! SetTabs()
-    if &readonly || &buftype ==# "nowrite"
-        return
-    endif
-
-    if &filetype ==# "make"
-        setlocal noexpandtab
-        return
-    endif
-
-    let l:tabs = search('^\t\+\S', 'n')
-    " Ignore 1 space indents; they're probably just for formatting
-    let l:spaces = search('^ \{2,\}\S', 'n')
-
-    if l:tabs && l:spaces
-        echoerr 'This file uses both spaces and tabs for indentation.'
-    elseif l:tabs
-        setlocal noexpandtab
-    elseif l:spaces
-        " The first indent is probably the lowest level of indentation
-        let &l:shiftwidth = indent(l:spaces)
-        let &l:tabstop = &l:shiftwidth
-    endif
-endfunction
-
-augroup settabs
-    autocmd!
-    autocmd FileType * :call SetTabs()
-augroup END
 
 " Options from sensible.vim
 set nrformats-=octal
