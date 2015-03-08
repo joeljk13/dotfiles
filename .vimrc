@@ -58,6 +58,11 @@ augroup vimrc_autotab
     autocmd FileType * call s:AutoTab()
 augroup END
 
+augroup vimrc_indenting
+    autocmd!
+    autocmd FileType gitconfig filetype indent off
+augroup END
+
 " Toggle among both of 'number' and 'relativenumber', just 'number', and
 " neither.
 function! s:SetNumber()
@@ -123,11 +128,6 @@ for s:c in split('abcdefghijklmnopqrstuvwxyz0123456789`~!@#$%^&*()-_=+[{]}\;:''"
 endfor
 nnoremap H<bar> ?<bar><cr>
 nnoremap L<bar> /<bar><cr>
-
-augroup vimrc_indenting
-    autocmd!
-    autocmd FileType gitconfig filetype indent off
-augroup END
 
 " Word wrapping settings
 
