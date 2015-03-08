@@ -109,7 +109,7 @@ set cinoptions=Ls,:0,(0,g0
 
 " Search settings
 
-set incsearch nohlsearch
+set incsearch nohlsearch ignorecase smartcase
 
 " Use Hx and Lx like Fx and fx in normal mode, but H and L will search across
 " lines.
