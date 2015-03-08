@@ -13,9 +13,16 @@ set nocompatible backspace=indent,eol,start
 syntax enable
 filetype plugin indent on
 
-set sessionoptions-=options
+" General settings/functions that could affect other
+" settings/mappings/functinons/etc or are likely to be used by them
 
 let mapleader = "\<SPACE>"
+
+function! IsWritable()
+    return !&readonly && &buftype == "" && &modifiable
+endfunction
+
+set sessionoptions-=options
 
 " Toggle among neither, 'number', and both of 'number' and 'relativenumber'.
 function! SetNumber()
