@@ -223,7 +223,7 @@ endfunction
 
 augroup vimrc_hashing
     autocmd!
-    autocmd BufNewFile,BufRead * let b:hash = s:BufHash()
+    autocmd BufEnter * let b:hash = s:BufHash()
 augroup END
 
 function! TrimL(str)
