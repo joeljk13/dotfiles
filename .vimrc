@@ -16,7 +16,7 @@ filetype plugin indent on
 " General settings/functions that could affect other
 " settings/mappings/functinons/etc or are likely to be used by them
 
-let mapleader = "\<SPACE>"
+let mapleader = "\<space>"
 
 function! IsWritable()
     return !&readonly && &buftype == "" && &modifiable
@@ -58,10 +58,9 @@ augroup vimrc_autotab
     autocmd FileType * call s:AutoTab()
 augroup END
 
-set sessionoptions-=options
-
-" Toggle among neither, 'number', and both of 'number' and 'relativenumber'.
-function! SetNumber()
+" Toggle among both of 'number' and 'relativenumber', just 'number', and
+" neither.
+function! s:SetNumber()
     if !&number && !&relativenumber
         set number
     elseif &relativenumber
@@ -72,54 +71,65 @@ function! SetNumber()
     endif
 endfunction
 
-nnoremap <leader>n :call SetNumber()<CR>
+nnoremap <leader>n :call <sid>SetNumber()<cr>
 
-" Use Hx and Lx like Fx and fx in normal mode, but H and L will search across
-" lines.
-
-for s:c in split('abcdefghijklmnopqrstuvwxyz0123456789`~!@#$%^&*()-_=+[{]}\;:''",<.>/? ', '\zs')
-    execute 'nnoremap H' . s:c . ' ?' . s:c . '<CR>'
-    execute 'nnoremap L' . s:c . ' /' . s:c . '<CR>'
-endfor
-
-nnoremap H<BAR> ?<BAR><CR>
-nnoremap L<BAR> /<BAR><CR>
-
-augroup syntax_highlighting
-    autocmd!
-    autocmd BufEnter * :syntax sync fromstart
-augroup END
-
-silent! set mouse=n
-
-set viminfo='1024,f1
-set history=1024
-
-set virtualedit=block
+" Colors and syntax highlighting
 
 colorscheme delek
 
-set nojoinspaces
+augroup syntax_highlighting
+    autocmd!
+    autocmd BufEnter * syntax sync fromstart
+augroup END
 
-" Options from sensible.vim
+" Miscellaneous settings
+
+" This fails when editing crontab on ssh, but I don't really care for the mouse
+" that much anyway, so just ignore errors.
+silent! set mouse=n
+
+" These may be essential enough to go in the top section, but I'm not sure.
+set wildmenu
+set wildmode=longest:full,full
+
+set sessionoptions-=options
+set viminfo='1024,f1
+set history=1024
+set virtualedit=block
+set nojoinspaces
 set nrformats-=octal
 set laststatus=2
 set lazyredraw
 set ruler
 set showcmd
-set wildmenu
-set wildmode=longest:full,full
 set scrolloff=2
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 set tabpagemax=64
-
 set cinoptions=Ls,:0,(0,g0
 
-augroup indenting
+" Search settings
+
+set incsearch nohlsearch
+
+" Use Hx and Lx like Fx and fx in normal mode, but H and L will search across
+" lines.
+"
+" There doesn't seem to be an elegant way of doing this in vim (if it's even
+" possible in general), so just loop through all characters and define a
+" mapping manually for each.
+for s:c in split('abcdefghijklmnopqrstuvwxyz0123456789`~!@#$%^&*()-_=+[{]}\;:''",<.>/? ', '\zs')
+    execute 'nnoremap H' . s:c . ' ?' . s:c . '<cr>'
+    execute 'nnoremap L' . s:c . ' /' . s:c . '<cr>'
+endfor
+nnoremap H<bar> ?<bar><cr>
+nnoremap L<bar> /<bar><cr>
+
+augroup vimrc_indenting
     autocmd!
     autocmd FileType gitconfig filetype indent off
-    autocmd FileType html,php filetype indent off | set ai
 augroup END
+
+" Word wrapping settings
 
 set formatoptions+=ljt
 set textwidth=79
@@ -129,15 +139,11 @@ augroup wordwrap
     autocmd FileType gitcommit setlocal textwidth=72
 augroup END
 
-" Map space to centering the screen
-nnoremap <Space> zz
+nnoremap <leader><space> zz
 
-" Search Options
-set incsearch nohlsearch
-
-augroup spelling
+augroup vimrc_spelling
     autocmd!
-    autocmd FileType tex setlocal spell
+    autocmd FileType tex,gitcommit,text setlocal spell
 augroup END
 
 " Saving
@@ -170,7 +176,7 @@ function! ResetSaving()
     call UpdateSavedHash()
 endfunction
 
-augroup hashing
+augroup vimrc_hashing
     autocmd!
     autocmd BufNewFile,BufReadPost,StdinReadPost * :call ResetSaving()
 augroup END
@@ -196,13 +202,13 @@ endfunction
 " Mapping jk to ESC
 set timeoutlen=150
 
-nnoremap <silent> jk :call Save()<CR>
-inoremap <silent> jk <ESC>:call TrimC()<BAR>write<BAR>call UpdateSavedHash()<CR>
-vnoremap <silent> jk <ESC>:call Save()<CR>
-onoremap <silent> jk <ESC>:call Save()<CR>
-cnoremap <silent> jk <ESC>:call Save()<CR>
+nnoremap <silent> jk :call Save()<cr>
+inoremap <silent> jk <esc>:call TrimC()<bar>write<bar>call UpdateSavedHash()<cr>
+vnoremap <silent> jk <esc>:call Save()<cr>
+onoremap <silent> jk <esc>:call Save()<cr>
+cnoremap <silent> jk <esc>:call Save()<cr>
 
-augroup comments
+augroup vimrc_comments
     autocmd!
     autocmd FileType c,cpp,java,javascript :let b:linecomment='//'
     autocmd FileType python,ruby :let b:linecomment='#'
@@ -210,6 +216,8 @@ augroup comments
     autocmd FileType vim :let b:linecomment='"'
     autocmd FileType tex :let b:linecomment='%'
 augroup END
+
+" TODO - fix the commenting functions. They don't really work at the moment.
 
 function! AddLineComment() range
     let l:min = -1
@@ -252,9 +260,12 @@ function! SubLineComment()
                 \ . ' ', '', ''))
 endfunction
 
+" To create temporary vimscript inline in a file and run in, just select it in
+" visual mode and type `:call Execute()`. Another option would be to create a
+" tmp.vim file with the code and then source it.
 function! Execute() range
     let l:lines =  join(getbufline("%", a:firstline, a:lastline), "\n")
-    let l:script = substitute(l:lines, '\n\s*\', '', 'g')
+    let l:script = substitute(l:lines, '\n\s*\\', '', 'g')
     execute l:script
 endfunction
 
