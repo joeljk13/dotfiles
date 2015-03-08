@@ -161,6 +161,10 @@ function! s:BufHash()
 endfunction
 
 function! s:Save()
+    if !IsWritable()
+        return
+    endif
+
     let l:hash = s:BufHash()
     if l:hash != b:hash
         let b:hash = l:hash
