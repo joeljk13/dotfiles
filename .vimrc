@@ -22,6 +22,53 @@ function! IsWritable()
     return !&readonly && &buftype == "" && &modifiable
 endfunction
 
+" Enable plugins and set their settings
+
+" Syntastic
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_aggregate_errors = 1
+let g:syntastic_error_symbol = "✗"
+let g:syntastic_style_error_symbol = "✗"
+let g:syntastic_warning_symbol = "✗"
+let g:syntastic_style_warning_symbol = "✗"
+let g:syntastic_enable_balloons = 1
+let g:syntastic_auto_loc_list = 1
+
+let g:syntastic_c_check_header = 1
+let g:syntastic_c_compiler_options = '-Wall -Wextra -Wundef -Wshadow'
+    \ . ' -Wcast-align -Wjump-misses-init -Wstrict-prototypes'
+    \ . ' -Wstrict-overflow=4 -Wwrite-strings -Waggregate-return -Wcast-qual'
+    \ . ' -Wswitch-default -Wstrict-aliasing -Wconversion -Wunreachable-code'
+    \ . ' -Wformat=2 -Winit-self -Wuninitialized -Wmissing-prototypes'
+    \ . ' -Wold-style-definition -Wdouble-promotion'
+    \ . ' -Wsuggest-attribute=noreturn -Wsuggest-attribute=format'
+    \ . ' -Wdeclaration-after-statement -Wunsafe-loop-optimizations'
+    \ . ' -Wmissing-declarations -Wmissing-field-initializers'
+    \ . ' -Wredundant-decls -Winline -Wvla -Wdisabled-optimization'
+    \ . ' -Wstack-protector -Wvector-operation-performance'
+    \ . ' -pedantic-errors -Werror -Wno-error=cast-align -Wno-error=cast-qual'
+    \ . ' -std=c99'
+
+let g:syntastic_cpp_check_header = g:syntastic_c_check_header
+let g:syntastic_cpp_compiler_options = g:syntastic_c_compiler_options
+
+" Colorschemes
+
+let g:solarized_termcolors=256
+
+execute pathogen#infect()
+
+" Colors and syntax highlighting
+
+set background=dark
+colorscheme delek
+
+augroup syntax_highlighting
+    autocmd!
+    autocmd BufEnter * syntax sync fromstart
+augroup END
+
 " Tabs and spaces settings for indenting
 
 set tabstop=4 softtabstop=0 shiftwidth=4 expandtab
@@ -77,17 +124,6 @@ function! s:SetNumber()
 endfunction
 
 nnoremap <leader>n :call <sid>SetNumber()<cr>
-
-" Colors and syntax highlighting
-
-let g:solarized_termcolors=256
-set background=dark
-colorscheme delek
-
-augroup syntax_highlighting
-    autocmd!
-    autocmd BufEnter * syntax sync fromstart
-augroup END
 
 " Miscellaneous settings
 
@@ -263,5 +299,3 @@ function! Execute() range
     let l:script = substitute(l:lines, '\n\s*\\', '', 'g')
     execute l:script
 endfunction
-
-execute pathogen#infect()
