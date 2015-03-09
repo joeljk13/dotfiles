@@ -87,6 +87,10 @@ let g:move_key_modifier = 'C'
 
 nnoremap <leader>v :OverCommandLine<cr>
 
+" Unite
+
+nnoremap <leader>u :Unite -auto-resize -auto-preview<space>
+
 execute pathogen#infect()
 
 " Colors and syntax highlighting
