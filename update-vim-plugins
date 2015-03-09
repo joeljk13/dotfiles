@@ -12,6 +12,7 @@ cp vim-pathogen/autoload/pathogen.vim "$HOME/.vim/autoload/"
 for plugin in *; do
     cd "$1$plugin"
 
+    git submodule update --init --recursive >/dev/null 2>&1
     git upa >/dev/null 2>&1
 
     if [ -z "$(find "$HOME/.vim/bundle" -maxdepth 1 -type d -name \
