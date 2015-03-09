@@ -27,5 +27,8 @@ for plugin in *; do
         fi
     fi
 
+    # Note: DO NOT first remove what is in there; just copy over and replace.
+    # If you remove first, then essential files for YouCompleteMe will need to
+    # be copied over again manually.
     cp -r * "$HOME/.vim/bundle/$plugin"
 done
