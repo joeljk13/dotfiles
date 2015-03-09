@@ -83,6 +83,10 @@ let g:sneak#streak = 1
 
 let g:move_key_modifier = 'C'
 
+" Over
+
+nnoremap <leader>v :OverCommandLine<cr>
+
 execute pathogen#infect()
 
 " Colors and syntax highlighting
