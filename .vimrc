@@ -79,6 +79,10 @@ let g:LatexBox_Folding = 1
 
 let g:sneak#streak = 1
 
+" Move
+
+let g:move_key_modifier = 'C'
+
 execute pathogen#infect()
 
 " Colors and syntax highlighting
