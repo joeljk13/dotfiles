@@ -1,18 +1,16 @@
 #!/bin/sh
 
-if [ -d "$HOME$1" ]; then
-    vim_plugin_path="$1"
-else
-    echo "Error: invalid vim plugin path '$HOME$1'" >&2
+if [ ! -d "$1" ]; then
+    echo "Error: invalid vim plugin path '$1'" >&2
     exit 1
 fi
 
-cd "$HOME$1"
+cd "$1"
 
 cp vim-pathogen/autoload/pathogen.vim "$HOME/.vim/autoload/"
 
 for plugin in *; do
-    cd "$HOME$1$plugin"
+    cd "$1$plugin"
 
     git upa >/dev/null 2>&1
 

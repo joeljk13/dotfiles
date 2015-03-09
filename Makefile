@@ -18,7 +18,7 @@ dot-vim:
 	cp -r $(DOTFILES_PATH)/.vim $(HOME_PATH)
 
 vim-plugins:
-	$(DOTFILES_PATH)/update-vim-plugins '/Joel/software/vim-plugins/'
+	$(DOTFILES_PATH)/update-vim-plugins $(HOME_PATH)/Joel/software/vim-plugins/
 
 dot-bash:
 	cp $(DOTFILES_PATH)/.bash* $(HOME_PATH)
@@ -60,7 +60,8 @@ csc:
 		$(DOTFILES_PATH)/update-vim-plugins jkottas@cycle2.csug.rochester.edu:~
 	scp -r $(HOME_PATH)/Joel/software/vim-plugins/ jkottas@cycle2.csug.rochester.edu:~/
 	# Don't have the .git directories taking up space
-	ssh jkottas@cycle2.csug.rochester.edu 'find ~/vim-plugins -name .git -type d -exec rm -rf "{}" +'
+	ssh jkottas@cycle2.csug.rochester.edu \
+		'find ~/vim-plugins -name .git -type d -exec rm -rf "{}" +; ./update-vim-plugins ~/vim-plugins/'
 
 make:
 	cp $(DOTFILES_PATH)/Makefile $(HOME_PATH)
