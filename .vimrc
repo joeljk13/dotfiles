@@ -75,6 +75,10 @@ let g:airline#extensions#tabline#tab_min_count = 2
 let g:LatexBox_complete_inlineMath = 1
 let g:LatexBox_Folding = 1
 
+" Sneak
+
+let g:sneak#streak = 1
+
 execute pathogen#infect()
 
 " Colors and syntax highlighting
