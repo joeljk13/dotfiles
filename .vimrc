@@ -70,6 +70,11 @@ let g:airline#extensions#tabline#buffer_min_count = 2
 let g:airline#extensions#tabline#tab_min_count = 2
 " let g:airline#extensions#tmuxline#enabled = 1
 
+" LaTeX-Box
+
+let g:LatexBox_complete_inlineMath = 1
+let g:LatexBox_Folding = 1
+
 execute pathogen#infect()
 
 " Colors and syntax highlighting
