@@ -82,6 +82,11 @@ augroup syntax_highlighting
     autocmd BufEnter * syntax sync fromstart
 augroup END
 
+augroup vimrc_filetypes
+    autocmd!
+    autocmd BufNewFile,BufRead *.md set filetype=markdown
+augroup END
+
 " Tabs and spaces settings for indenting
 
 set tabstop=4 softtabstop=0 shiftwidth=4 expandtab
