@@ -174,6 +174,9 @@ set tabpagemax=64
 set cinoptions=Ls,:0,(0,g0
 set timeout ttimeout timeoutlen=1000 ttimeoutlen=100
 
+nnoremap <leader>o o<esc>O
+nnoremap <leader>O O<esc>o
+
 " Search settings
 
 set incsearch nohlsearch ignorecase smartcase
