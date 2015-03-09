@@ -98,6 +98,16 @@ let g:delimitMate_expand_space = 1
 
 execute pathogen#infect()
 
+" Rainbow Parentheses
+
+augroup vimrc_rainbow_parentheses
+    autocmd!
+    autocmd VimEnter * RainbowParenthesesToggle
+    autocmd Syntax * RainbowParenthesesLoadRound
+    autocmd Syntax * RainbowParenthesesLoadSquare
+    autocmd Syntax * RainbowParenthesesLoadBraces
+augroup END
+
 " Colors and syntax highlighting
 
 set background=dark
