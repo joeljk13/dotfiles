@@ -120,8 +120,8 @@ augroup END
 
 " Colors and syntax highlighting
 
-set background=dark
-colorscheme delek
+set t_ut= background=dark
+colorscheme badwolf
 
 augroup syntax_highlighting
     autocmd!
