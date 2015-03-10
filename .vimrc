@@ -102,6 +102,10 @@ nnoremap <leader>tp :VimuxPromptCommand<cr>
 nnoremap <leader>tl :VimuxRunLastCommand<cr>
 nnoremap <leader>tq :VimuxCloseRunner<cr>
 
+" Tagbar
+
+nnoremap <leader>b :TagbarToggle<cr>
+
 execute pathogen#infect()
 
 " Rainbow Parentheses
