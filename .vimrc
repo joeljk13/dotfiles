@@ -208,6 +208,9 @@ set timeout ttimeout timeoutlen=1000 ttimeoutlen=100
 nnoremap <leader>o o<esc>O
 nnoremap <leader>O O<esc>o
 
+" Use yy instead. Now Y is consistend with C and D.
+nnoremap Y y$
+
 " Search settings
 
 set incsearch nohlsearch ignorecase smartcase
