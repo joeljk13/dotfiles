@@ -96,6 +96,12 @@ nnoremap <leader>u :Unite -auto-resize -auto-preview<space>
 let g:delimitMate_expand_cr = 1
 let g:delimitMate_expand_space = 1
 
+" Vimux
+
+nnoremap <leader>tp :VimuxPromptCommand<cr>
+nnoremap <leader>tl :VimuxRunLastCommand<cr>
+nnoremap <leader>tq :VimuxCloseRunner<cr>
+
 execute pathogen#infect()
 
 " Rainbow Parentheses
