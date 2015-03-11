@@ -264,6 +264,9 @@ nnoremap <leader>O O<esc>o
 " Use yy instead. Now Y is consistend with C and D.
 nnoremap Y y$
 
+nnoremap <leader>- <c-w>s
+nnoremap <leader>\ <c-w>v
+
 " Search settings
 
 set incsearch nohlsearch ignorecase smartcase
