@@ -68,7 +68,12 @@ let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#tabline#show_tabs = 1
 let g:airline#extensions#tabline#buffer_min_count = 2
 let g:airline#extensions#tabline#tab_min_count = 2
-" let g:airline#extensions#tmuxline#enabled = 1
+let g:airline#extensions#tmuxline#enabled = 0
+let g:airline_powerline_fonts = 1
+
+" Tmuxline
+
+let g:tmuxline_theme = 'vim_powerline'
 
 " LaTeX-Box
 
