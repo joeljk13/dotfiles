@@ -106,6 +106,26 @@ nnoremap <leader>tq :VimuxCloseRunner<cr>
 
 nnoremap <leader>b :TagbarToggle<cr>
 
+" Python-mode
+
+let g:pymode_trim_whitespaces = 1
+let g:pymode_options = 0
+let g:pymode_indent = 0
+let g:pymode_run_bind = '<leader>pr'
+let g:pynode_breakpoint_bind = '<leader>pb'
+let g:pymode_lint_ignore = "E302"
+let g:pymode_rope_goto_definition_bind = '<c-]>'
+let g:pymode_rope_rename_bind = '<leader>pn'
+let g:pymode_rope_rename_module_bind = '<leader>pm'
+let g:pymode_rope_rename_imports_bind = '<leader>po'
+let g:pymode_rope_autoimport_bind = '<leader>pi'
+let g:pymore_rope_module_to_package_bind = '<leader>pp'
+let g:pymore_rope_extract_method_bind = '<leader>pf'
+let g:pymore_rope_extract_variable_bind = '<leader>pv'
+let g:pymore_rope_use_function_bind = '<leader>pu'
+let g:pymode_rope_move_bind = '<leader>pa'
+let g:pymode_rope_change_signature_bind = '<leader>ps'
+
 execute pathogen#infect()
 
 " Rainbow Parentheses
