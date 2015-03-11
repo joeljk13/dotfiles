@@ -152,6 +152,10 @@ augroup vimrc_rainbow_parentheses
     autocmd Syntax * RainbowParenthesesLoadBraces
 augroup END
 
+" Litecorrect
+
+call litecorrect#init()
+
 " Colors and syntax highlighting
 
 set t_ut= background=dark
