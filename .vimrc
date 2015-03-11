@@ -264,10 +264,13 @@ nnoremap <leader>O O<esc>o
 " Use yy instead. Now Y is consistend with C and D.
 nnoremap Y y$
 
+" Window/buffer mappings
+
 nnoremap <leader>- <c-w>s
 nnoremap <leader>\ <c-w>v
 nnoremap <leader>w- <c-w>s
 nnoremap <leader>w\ <c-w>v
+nnoremap <leader>wo <c-w>o
 
 " Search settings
 
