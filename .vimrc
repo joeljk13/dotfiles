@@ -16,7 +16,8 @@ filetype plugin indent on
 " General settings/functions that could affect other
 " settings/mappings/functinons/etc or are likely to be used by them
 
-let mapleader = "\<space>"
+let mapleader = '\'
+nmap <space> \
 
 function! IsWritable()
     return !&readonly && &buftype == "" && &modifiable
