@@ -266,6 +266,8 @@ nnoremap Y y$
 
 nnoremap <leader>- <c-w>s
 nnoremap <leader>\ <c-w>v
+nnoremap <leader>w- <c-w>s
+nnoremap <leader>w\ <c-w>v
 
 " Search settings
 
