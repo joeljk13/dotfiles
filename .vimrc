@@ -131,6 +131,15 @@ let g:pymore_rope_use_function_bind = '<leader>pu'
 let g:pymode_rope_move_bind = '<leader>pa'
 let g:pymode_rope_change_signature_bind = '<leader>ps'
 
+" Colorizer
+
+nnoremap <leader>cC :ColorToggle<cr>
+xnoremap <leader>cC :ColorToggle<cr>
+nnoremap <leader>cT :ColorContrast<cr>
+xnoremap <leader>cT :ColorContrast<cr>
+nnoremap <leader>cf :ColorSwapFgBg<cr>
+xnoremap <leader>cF :ColorSwapFgBg<cr>
+
 execute pathogen#infect()
 
 " Rainbow Parentheses
