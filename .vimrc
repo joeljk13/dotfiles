@@ -143,6 +143,11 @@ xnoremap <leader>cF :ColorSwapFgBg<cr>
 
 execute pathogen#infect()
 
+augroup vimrc_syntastic
+    autocmd!
+    autocmd BufRead * if !IsWritable() | let b:syntastic_mode = "passive" | endif
+augroup END
+
 " Rainbow Parentheses
 
 augroup vimrc_rainbow_parentheses
