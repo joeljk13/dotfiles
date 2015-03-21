@@ -296,7 +296,7 @@ nnoremap L<bar> /<bar><cr>
 
 " Word wrapping settings
 
-set formatoptions+=ljt
+set formatoptions+=ljtcroq
 set textwidth=79
 
 augroup wordwrap
