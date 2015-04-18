@@ -20,9 +20,6 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
-# Make sure . is last in PATH
-PATH="$PATH:."
-
 TERM=xterm-256color
 
 # if running bash
