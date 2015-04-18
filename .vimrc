@@ -84,6 +84,7 @@ let g:LatexBox_Folding = 1
 " Sneak
 
 let g:sneak#streak = 1
+let g:sneak#streak_esc = "\<f13>"
 
 " Move
 
