@@ -14,8 +14,10 @@ some of my favorite features:
      whitespace from the current line if you're in insert mode.
  - `<space>` as `<leader>`. You can't make mneumonics with it, but it's really
      easy to type, so I like it.
- - Lots of plugin customization, with plugins like vim-airline, syntastic (with
-     my gcc warnings for C)
+ - Lots of plugin customization, with plugins like
+     [vim-airline](https://github.com/bling/vim-airline),
+     [syntastic](https://github.com/scrooloose/syntastic) (with my gcc warnings
+     for C)
  - Automatic tab setting that detects the indent of the current file. It also
      warns if spaces and tabs are mixed. It's not as fancy as the plugins ffor
      this, but it's a very simple agorithm that just almost all of the time.
@@ -27,7 +29,7 @@ some of my favorite features:
  - Use PREFIX + # to go to pane #
 
 Also, you can use CTRL+[hjkl] to move seamlessly between tmux and vim, thanks
-to a plugin.
+to [vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator).
 
 .gitconfig
 ----------
@@ -45,7 +47,8 @@ to a plugin.
  - Use `git commit -v` instead of `git commit` whever possible to show what
      changes are being commited while typing the commit message
  - `git wipe` is `git reset --hard` improved - it commits and then resets, so
-     that you can get back through `git reflog`.
+     that you can get back through `git reflog`. (Idea taken from
+     [here](http://haacked.com/archive/2014/07/28/github-flow-aliases/)).
  - `git upa` updates all branches
  - `git hub <user> <repo>` to clone from github.
  - And most importantly, amazing logging:
