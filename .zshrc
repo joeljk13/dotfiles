@@ -95,16 +95,6 @@ alias ":w"="echo You're not in vim."
 alias "jk:q"="echo You're not in vim."
 alias ":q"="echo You're not in vim."
 
-p()
-{
-    pal "$@" && sh ~/Joel/programming/sh/todo/todo.sh --pal-to-task
-}
-
-t()
-{
-    task "$@" && sh ~/Joel/programming/sh/todo/todo.sh --task-to-pal
-}
-
 export PATH="$PATH:$HOME/Joel/programming/sh/git"
 
 c()
