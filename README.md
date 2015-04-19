@@ -7,11 +7,12 @@ some of my favorite features:
 .vimrc
 ------
 
- - `jk` is escape. It also does more though - it automatically saves the file,
-     if the file hasn't already been saved. It also makes sure that vim knows
-     that the file really hasn't been modified, since vim assumes the file gets
-     modified every time you go in insert mode. It also clears any trailing
-     whitespace from the current line if you're in insert mode.
+ - `jk` is escape. It's easy to roll your fingers across these keys quickly. It
+     also does more though - it automatically saves the file, if the file
+     hasn't already been saved. It also makes sure that vim knows that the file
+     really hasn't been modified, since vim assumes the file gets modified
+     every time you go in insert mode. It also clears any trailing whitespace
+     from the current line if you're in insert mode.
  - `<space>` as `<leader>`. You can't make mneumonics with it, but it's really
      easy to type, so I like it.
  - Lots of plugin customization, with plugins like
