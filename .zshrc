@@ -88,10 +88,12 @@ alias g=git
 alias v='f -e vim -b viminfo'
 alias no='yes n'
 
-alias 'jk:wq'='echo You''re not in vim.'
-alias ':wq'='echo You''re not in vim.'
-alias 'jk:w'='echo You''re not in vim.'
-alias ':w'='echo You''re not in vim.'
+alias "jk:wq"="echo You're not in vim."
+alias ":wq"="echo You're not in vim."
+alias "jk:w"="echo You're not in vim."
+alias ":w"="echo You're not in vim."
+alias "jk:q"="echo You're not in vim."
+alias ":q"="echo You're not in vim."
 
 p()
 {
