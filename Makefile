@@ -6,7 +6,8 @@ DEF_TARGETS = dot-vim vim-plugins dot-bash dot-zsh dot-lynx dot-tmux dot-git \
 
 OTHER_TARGETS = all backup-all backup system
 
-DOTFILES_PATH = ~/Joel/programming/dotfiles
+VIM_PLUGIN_PATH = ~/.vim-plugins/
+DOTFILES_PATH = ~/.dotfiles
 HOME_PATH = ~
 
 .PHONY: $(DEF_TARGETS) $(OTHER_TARGETS)
@@ -17,7 +18,7 @@ dot-vim:
 	cp $(DOTFILES_PATH)/.vimrc $(HOME_PATH)
 
 vim-plugins:
-	$(DOTFILES_PATH)/update-vim-plugins $(HOME_PATH)/Joel/software/vim-plugins/
+	$(DOTFILES_PATH)/update-vim-plugins $(VIM_PLUGIN_PATH)
 
 dot-bash:
 	cp $(DOTFILES_PATH)/.bash* $(HOME_PATH)
@@ -44,10 +45,11 @@ csc:
 		$(DOTFILES_PATH)/.bash* $(DOTFILES_PATH)/.zsh* \
 		$(DOTFILES_PATH)/.*profile $(DOTFILES_PATH)/.lynxrc \
 		$(DOTFILES_PATH)/update-vim-plugins jkottas@cycle2.csug.rochester.edu:~
-	scp -r $(HOME_PATH)/Joel/software/vim-plugins/ jkottas@cycle2.csug.rochester.edu:~/
+	scp -r $(VIM_PLUGIN_PATH) jkottas@cycle2.csug.rochester.edu:~/
 	# Don't have the .git directories taking up space
 	ssh jkottas@cycle2.csug.rochester.edu \
-		'find ~/vim-plugins -name .git -type d -exec rm -rf "{}" +; ./update-vim-plugins ~/vim-plugins/'
+		'find $(VIM_PLUGIN_PATH) -name .git -type d -exec rm -rf "{}" +; \
+		./update-vim-plugins $(VIM_PLUGIN_PATH)'
 
 make:
 	cp $(DOTFILES_PATH)/Makefile $(HOME_PATH)
