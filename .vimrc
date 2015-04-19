@@ -306,8 +306,6 @@ augroup wordwrap
     autocmd FileType gitcommit setlocal textwidth=72
 augroup END
 
-nnoremap <leader><space> zz
-
 augroup vimrc_spelling
     autocmd!
     autocmd FileType tex,gitcommit,text setlocal spell
