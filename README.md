@@ -24,7 +24,7 @@ some of my favorite features:
 ----------
 
  - Use PREFIX + w + # to go to window #
- - Use PREFOX + # to go to pane #
+ - Use PREFIX + # to go to pane #
 
 Also, you can use CTRL+[hjkl] to move seamlessly between tmux and vim, thanks
 to a plugin.
