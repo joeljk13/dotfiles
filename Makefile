@@ -2,7 +2,7 @@ SHELL = /bin/sh
 .SUFFIXES:
 
 DEF_TARGETS = dot-vim vim-plugins dot-bash dot-zsh dot-lynx dot-tmux dot-git \
-	dot-mutt dot-pal dot-task dot-net dot-profile make
+	dot-profile make
 
 OTHER_TARGETS = all backup-all backup system
 
@@ -15,7 +15,6 @@ all: $(DEF_TARGETS)
 
 dot-vim:
 	cp $(DOTFILES_PATH)/.vimrc $(HOME_PATH)
-	cp -r $(DOTFILES_PATH)/.vim $(HOME_PATH)
 
 vim-plugins:
 	$(DOTFILES_PATH)/update-vim-plugins $(HOME_PATH)/Joel/software/vim-plugins/
@@ -34,19 +33,6 @@ dot-tmux:
 
 dot-git:
 	cp $(DOTFILES_PATH)/.gitconfig $(DOTFILES_PATH)/.gitignore $(HOME_PATH)
-
-dot-mutt:
-	cp $(DOTFILES_PATH)/.muttrc $(HOME_PATH)
-
-dot-pal:
-	cp -r $(DOTFILES_PATH)/.pal $(HOME_PATH)
-
-dot-task:
-	cp -r $(DOTFILES_PATH)/.task $(HOME_PATH)
-	cp $(DOTFILES_PATH)/.taskrc $(HOME_PATH)
-
-dot-net:
-	cp $(DOTFILES_PATH)/.netrc $(HOME_PATH)
 
 dot-profile:
 	cp $(DOTFILES_PATH)/.*profile $(HOME_PATH)
