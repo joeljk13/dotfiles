@@ -9,11 +9,12 @@ alias ll='ls -lh --color=auto'
 alias la='ls -lAh --color=auto'
 alias l='ls -lah --color=auto'
 
+# oh-my-zsh handles these
 if [ "$ZSH" = "" ]; then
-    alias ...='../..'
-    alias ....='../../..'
-    alias .....='../../../..'
-    alias ......='../../../../..'
+    alias cd...='cd ../..'
+    alias cd....='cd ../../..'
+    alias cd.....='cd ../../../..'
+    alias cd......='cd ../../../../..'
 
     alias ls='ls --color=auto'
     alias grep='grep --color=auto'
