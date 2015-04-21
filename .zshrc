@@ -1,7 +1,7 @@
 source .profile
 
 # Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+export ZSH="$HOME/.zsh"
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -54,6 +54,6 @@ autoload -U ~/.zsh/*(:t)
 
 # User configuration
 
-source $ZSH/oh-my-zsh.sh
+source "$ZSH/oh-my-zsh.sh"
 
 source .shellrc
