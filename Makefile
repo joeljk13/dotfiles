@@ -42,7 +42,7 @@ dot-shell:
 	cp $(DOTFILES_PATH)/.shellrc $(HOME_PATH)
 
 dot-i3:
-	cp -r $(DOTFILES_PATH)/.i3 ~/.i3
+	cp -rT $(DOTFILES_PATH)/.i3 ~/.i3
 
 make:
 	cp $(DOTFILES_PATH)/Makefile $(HOME_PATH)
