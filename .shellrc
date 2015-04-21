@@ -1,0 +1,37 @@
+# This is designed to be a common script for bash and zsh to run on
+# initialization
+
+alias g=git
+alias v='f -e vim -b viminfo'
+alias no='yes n'
+
+alias ll='ls -lh --color=auto'
+alias la='ls -lAh --color=auto'
+alias l='ls -lah --color=auto'
+
+if [ "$ZSH" = "" ]; then
+    alias ...='../..'
+    alias ....='../../..'
+    alias .....='../../../..'
+    alias ......='../../../../..'
+
+    alias ls='ls --color=auto'
+    alias grep='grep --color=auto'
+fi
+
+alias "jk:wq"="echo You're not in vim."
+alias ":wq"="echo You're not in vim."
+alias "jk:w"="echo You're not in vim."
+alias ":w"="echo You're not in vim."
+alias "jk:q"="echo You're not in vim."
+alias ":q"="echo You're not in vim."
+
+if hash fasd 2>/dev/null; then
+    eval "$(fasd --init auto)"
+fi
+
+c() {
+    echo "jkottas@cycle${1}.csug.rochester.edu"
+}
+
+# vim:set ft=sh:

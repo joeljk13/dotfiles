@@ -1,5 +1,7 @@
+source .profile
+
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -23,7 +25,7 @@ DISABLE_AUTO_UPDATE="true"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="true"
@@ -52,54 +54,6 @@ autoload -U ~/.zsh/*(:t)
 
 # User configuration
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/joel/Joel/programming/sh/git"
-# export MANPATH="/usr/local/man:$MANPATH"
-
 source $ZSH/oh-my-zsh.sh
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-eval "$(fasd --init auto)"
-
-alias g=git
-alias v='f -e vim -b viminfo'
-alias no='yes n'
-
-alias "jk:wq"="echo You're not in vim."
-alias ":wq"="echo You're not in vim."
-alias "jk:w"="echo You're not in vim."
-alias ":w"="echo You're not in vim."
-alias "jk:q"="echo You're not in vim."
-alias ":q"="echo You're not in vim."
-
-export PATH="$PATH:$HOME/Joel/programming/sh/git"
-
-c()
-{
-    echo "jkottas@cycle$1.csug.rochester.edu"
-}
-
-source ~/.zprofile
+source .shellrc
