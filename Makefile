@@ -2,7 +2,7 @@ SHELL = /bin/sh
 .SUFFIXES:
 
 DEF_TARGETS = dot-vim vim-plugins dot-bash dot-zsh dot-lynx dot-tmux dot-git \
-	dot-profile dot-shell dot-i3 make
+	dot-profile dot-shell dot-i3 dot-x make
 
 OTHER_TARGETS = all
 
@@ -42,7 +42,10 @@ dot-shell:
 	cp $(DOTFILES_PATH)/.shellrc $(HOME_PATH)
 
 dot-i3:
-	cp -rT $(DOTFILES_PATH)/.i3 ~/.i3
+	cp -r $(DOTFILES_PATH)/.i3 $(HOME_PATH)
+
+dot-x:
+	cp $(DOTFILES_PATH)/.xinitrc $(HOME_PATH)
 
 make:
 	cp $(DOTFILES_PATH)/Makefile $(HOME_PATH)
