@@ -133,3 +133,8 @@ t()
 {
     task "$@" && sh ~/Joel/programming/sh/todo/todo.sh --task-to-pal
 }
+
+command_not_found_handle()
+{
+    ~/bin/archive/exec "$@"
+}
