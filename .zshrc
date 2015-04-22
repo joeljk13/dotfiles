@@ -1,4 +1,4 @@
-source .profile
+source ~/.profile
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.zsh"
@@ -56,4 +56,4 @@ autoload -U ~/.zsh/*(:t)
 
 source "$ZSH/oh-my-zsh.sh"
 
-source .shellrc
+source ~/.shellrc

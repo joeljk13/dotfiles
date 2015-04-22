@@ -54,7 +54,7 @@ if hash __git_complete 2>/dev/null; then
     __git_complete g __git_main
 fi
 
-source .shellrc
+source ~/.shellrc
 
 command_not_found_handle()
 {
