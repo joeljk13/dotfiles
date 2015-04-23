@@ -10,13 +10,13 @@ alias ll='ls -lh --color=auto'
 alias la='ls -lAh --color=auto'
 alias l='ls -lah --color=auto'
 
-# oh-my-zsh handles these
-if [ "$ZSH" = "" ]; then
-    alias cd...='cd ../..'
-    alias cd....='cd ../../..'
-    alias cd.....='cd ../../../..'
-    alias cd......='cd ../../../../..'
+alias "cd~"='cd ~'
+alias "cd..."='cd ../..'
+alias "cd...."='cd ../../..'
+alias "cd....."='cd ../../../..'
+alias "cd......"='cd ../../../../..'
 
+if [ "$(alias grep)" = "" ]; then
     alias grep='grep --color=auto'
 fi
 
