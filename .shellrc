@@ -35,4 +35,7 @@ c() {
     echo "jkottas@cycle${1}.csug.rochester.edu"
 }
 
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
+
 # vim:set ft=sh:
