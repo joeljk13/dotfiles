@@ -35,7 +35,9 @@ c() {
     echo "jkottas@cycle${1}.csug.rochester.edu"
 }
 
-eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/id_ed25519
+if ! ps -u joel | awk '{print $4}' | grep -q '^ssh-agent$'; then
+    eval "$(ssh-agent -s)"
+    ssh-add ~/.ssh/id_ed25519
+fi
 
 # vim:set ft=sh:
