@@ -8,7 +8,7 @@ alias no='yes n'
 alias ls='ls --color=auto'
 alias ll='ls -lh --color=auto'
 alias la='ls -lAh --color=auto'
-alias l='ls -lah --color=auto'
+alias l='ls -lh --color=auto'
 
 alias "cd~"='cd ~'
 alias "cd..."='cd ../..'
