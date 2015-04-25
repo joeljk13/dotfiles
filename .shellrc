@@ -35,12 +35,12 @@ c() {
     echo "jkottas@cycle${1}.csug.rochester.edu"
 }
 
-if ! ps -u joel | awk '{print $4}' | grep -q '^ssh-agent$'; then
+if ! ps -u "$USER" | awk '{print $4}' | grep -q '^ssh-agent$'; then
     eval "$(ssh-agent -s)"
     ssh-add ~/.ssh/id_ed25519
 fi
 
-if ! ps -u joel | awk '{print $4}' | grep -q '^sshd$'; then
+if ! ps -u "$USER" | awk '{print $4}' | grep -q '^sshd$'; then
     ~/bin/sshd -h ~/.ssh/id_ed25519 -p 2022
 fi
 
