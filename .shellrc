@@ -16,7 +16,7 @@ alias "cd...."='cd ../../..'
 alias "cd....."='cd ../../../..'
 alias "cd......"='cd ../../../../..'
 
-if [ "$(alias grep)" = "" ]; then
+if [ "$(alias grep 2>/dev/null)" = "" ]; then
     alias grep='grep --color=auto'
 fi
 
