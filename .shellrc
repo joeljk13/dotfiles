@@ -37,7 +37,6 @@ c() {
 
 if ! ps -u "$USER" | awk '{print $4}' | grep -q '^ssh-agent$'; then
     eval "$(ssh-agent -s)"
-    ssh-add ~/.ssh/id_ed25519
 fi
 
 # vim:set ft=sh:
