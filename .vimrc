@@ -193,6 +193,9 @@ function! s:AutoTab()
         return
     endif
 
+    let l:pos = getcurpos()
+    call cursor(1, 1)
+
     let l:tabs = search('^\t\+\S', 'n')
     " Ignore 1 space indents; they're probably just for formatting
     let l:spaces = search('^ \{2,\}\S', 'n')
@@ -208,11 +211,13 @@ function! s:AutoTab()
     " else
     "   use user-set defaults
     endif
+
+    call cursor(l:pos[1:])
 endfunction
 
 augroup vimrc_autotab
     autocmd!
-    autocmd FileType * call s:AutoTab()
+    autocmd BufRead * call s:AutoTab()
 augroup END
 
 augroup vimrc_indenting
