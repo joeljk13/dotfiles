@@ -52,12 +52,15 @@
     unstage = reset HEAD --
 
     df = diff
+    dfc = diff --color=always
     dfw = diff --word-diff
     dfcw = diff --word-diff=color
     dfwc = diff --word-diff --color=always
-    dfc = diff --color=always
     dfi = diff --cached
     dfic = diff --cached --color=always
+    dfiw = diff --cached --word-diff
+    dficw = diff --cached --word-diff=color
+    dfiwc = diff --cached --word-diff --color=always
     dt = difftool -y
 
     ss = stash
