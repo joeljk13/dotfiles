@@ -1,3 +1,4 @@
+! Colorscheme copied from Wikipedia
 ! terminal colors ------------------------------------------------------------
 
 ! tangoesque scheme
@@ -27,3 +28,16 @@
 ! LightGrey + White
 *color7:  #cccccc
 *color15: #ffffff
+
+*font: xft:DejaVu Sans Mono Bold for Powerline:size=8
+
+URxvt.title: URxvt
+URxvt.urgentOnBell: True
+URxvt.saveLines: 65535
+URxvt.perl-ext-common: default,clipboard,url-select
+URxvt.keysym.M-u: perl:url-select:select_next
+URxvt.url-select.launcher: /bin/firefox
+URxvt.url-select.underline: true
+
+! URxvt.font: xft:DejaVuSansMonoBoldforPowerline:size=12
+URxvt.letterSpace: -1
