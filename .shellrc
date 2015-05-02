@@ -27,6 +27,8 @@ alias ":w"="echo You're not in vim."
 alias "jk:q"="echo You're not in vim."
 alias ":q"="echo You're not in vim."
 
+alias sp='systemctl hybrid-sleep'
+
 if hash fasd 2>/dev/null; then
     eval "$(fasd --init auto)"
 fi
