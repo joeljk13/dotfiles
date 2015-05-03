@@ -54,5 +54,7 @@ source "$ZSH/oh-my-zsh.sh"
 source ~/software/opp.zsh/opp.zsh
 source ~/software/opp.zsh/opp/surround.zsh
 source ~/software/opp.zsh/opp/textobj-between.zsh
+# So that it doesn't take forever to switch into vim-like normal mode
+export KEYTIMEOUT=100
 
 source ~/.shellrc
