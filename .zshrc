@@ -51,4 +51,8 @@ plugins=(git vi-mode)
 
 source "$ZSH/oh-my-zsh.sh"
 
+source ~/software/opp.zsh/opp.zsh
+source ~/software/opp.zsh/opp/surround.zsh
+source ~/software/opp.zsh/opp/textobj-between.zsh
+
 source ~/.shellrc
