@@ -49,11 +49,6 @@ ENABLE_CORRECTION="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git vi-mode)
 
-fpath=(~/.zsh $fpath)
-autoload -U ~/.zsh/*(:t)
-
-# User configuration
-
 source "$ZSH/oh-my-zsh.sh"
 
 source ~/.shellrc
