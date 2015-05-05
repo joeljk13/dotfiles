@@ -21,12 +21,12 @@ if [ "$(alias grep 2>/dev/null)" = "" ]; then
     alias grep='grep --color=auto'
 fi
 
-alias "jk:wq"="echo You're not in vim."
-alias ":wq"="echo You're not in vim."
-alias "jk:w"="echo You're not in vim."
-alias ":w"="echo You're not in vim."
-alias "jk:q"="echo You're not in vim."
-alias ":q"="echo You're not in vim."
+alias "jk:wq"="echo You\'re not in vim."
+alias ":wq"="echo You\'re not in vim."
+alias "jk:w"="echo You\'re not in vim."
+alias ":w"="echo You\'re not in vim."
+alias "jk:q"="echo You\'re not in vim."
+alias ":q"="echo You\'re not in vim."
 
 alias sp='systemctl hybrid-sleep'
 alias xsp='xlock& sleep 2; systemctl hybrid-sleep'
