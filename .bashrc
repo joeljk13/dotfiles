@@ -60,3 +60,5 @@ command_not_found_handle()
 {
     ~/bin/archive/exec "$@"
 }
+
+hash zsh 2>/dev/null
