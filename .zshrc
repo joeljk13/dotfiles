@@ -51,6 +51,43 @@ plugins=(git vi-mode)
 
 source "$ZSH/oh-my-zsh.sh"
 
+# See zshoptions(1) for details
+setopt AUTO_CD
+setopt AUTO_PUSHD
+setopt CDABLE_VARS
+setopt PUSHD_IGNORE_DUPS
+setopt PUSHD_TO_HOME
+setopt ALWAYS_TO_END
+setopt MENU_COMPLETE
+setopt BARE_GLOB_QUAL
+setopt BRACE_CCL
+setopt MAGIC_EQUAL_SUBST
+setopt NUMERIC_GLOB_SORT
+setopt EXTENDED_HISTORY
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_LEX_WORDS
+setopt HIST_REDUCE_BLANKS
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_VERIFY
+setopt INC_APPEND_HISTORY_TIME
+setopt CORRECT
+setopt CORRECT_ALL
+setopt INTERACTIVE_COMMENTS
+setopt HASH_EXECUTABLES_ONLY
+setopt RC_QUOTES
+setopt RC_STAR_WAIT
+setopt PROMPT_SUBST
+setopt PIPE_FAIL
+unsetopt BEEP
+unsetopt BG_NICE
+unsetopt HIST_BEEP
+unsetopt NOMATCH
+unsetopt LIST_BEEP
+
 source ~/software/opp.zsh/opp.zsh
 source ~/software/opp.zsh/opp/surround.zsh
 source ~/software/opp.zsh/opp/textobj-between.zsh
