@@ -1,12 +1,13 @@
 SHELL = /bin/sh
 .SUFFIXES:
 
-DEF_TARGETS = dot-vim vim-plugins dot-bash dot-zsh dot-lynx dot-tmux dot-git \
-	dot-profile dot-shell dot-i3 dot-x make
+DEF_TARGETS = vim-plugins zsh-plugins dot-vim dot-bash dot-zsh dot-lynx \
+	dot-tmux dot-git dot-profile dot-shell dot-i3 dot-x make
 
 OTHER_TARGETS = all
 
 VIM_PLUGIN_PATH = ~/.vim-plugins/
+ZSH_PLUGIN_PATH = ~/.zsh-plugins/
 DOTFILES_PATH = ~/.dotfiles
 HOME_PATH = ~
 
@@ -14,11 +15,16 @@ HOME_PATH = ~
 
 all: $(DEF_TARGETS)
 
-dot-vim:
-	cp $(DOTFILES_PATH)/.vimrc $(HOME_PATH)
-
 vim-plugins:
 	$(DOTFILES_PATH)/update-vim-plugins $(VIM_PLUGIN_PATH)
+
+zsh-plugins:
+	$(DOTFILES_PATH)/update-zsh-plugins $(ZSH_PLUGIN_PATH)
+
+# To update tmux plugins, do PREFIX + U
+
+dot-vim:
+	cp $(DOTFILES_PATH)/.vimrc $(HOME_PATH)
 
 dot-bash:
 	cp $(DOTFILES_PATH)/.bash* $(HOME_PATH)
