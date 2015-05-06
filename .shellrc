@@ -30,6 +30,9 @@ alias ":q"="echo You\'re not in vim."
 alias sp='systemctl hybrid-sleep'
 alias xsp='xlock& sleep 2; systemctl hybrid-sleep'
 
+alias fuck='eval "$(thefuck "$(fc -ln -1 | tail -n 1)")"; fc -R'
+alias FUCK=fuck
+
 if hash fasd 2>/dev/null; then
     eval "$(fasd --init auto)"
 fi
