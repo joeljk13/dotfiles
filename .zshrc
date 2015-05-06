@@ -54,6 +54,7 @@ zmodload -i zsh/curses
 zmodload -i zsh/datetime
 zmodload -i zsh/files
 zmodload -i zsh/mathfunc
+zmodload -i zsh/terminfo
 zmodload -i zsh/zle
 zmodload -i zsh/zutil
 
@@ -111,6 +112,18 @@ zsh_prompt()
 
 zsh_prompt
 
+[ -d ~/.zsh-plugins/zsh-completions/src ] && \
+    fpath=($fpath ~/.zsh-plugins/zsh-completions/src)
+
+# At the moment, a good order for sourcing is just the reverse of the sorted
+# file name, by coincidence.
+plugins=$(find ~/.zsh-plugins -type f -name \*.zsh \
+    -not -wholename \*test\* | sort -r)
+
+[ -z "$plugins" ] || for plugin in ${=plugins}; do
+    source $plugin
+done
+
 # I don't know all this is necessary, but oh-my-zsh does it and it makes things
 # work (this code is basically taken from oh-my-zsh, but made prettier, IMO).
 # Maybe it's because of bindkey -v?
@@ -126,12 +139,24 @@ if ((${+terminfo[smkx]})) && ((${+terminfo[rmkx]})); then
     zle -N zle-line-finish
 fi
 
-[ -z "${terminfo[kpp]}" ]   || bindkey "${terminfo[kpp]}"   up-line-or-history
-[ -z "${terminfo[knp]}" ]   || bindkey "${terminfo[knp]}"   down-line-or-history
-[ -z "${terminfo[kcuu1]}" ] || bindkey "${terminfo[kcuu1]}" up-line-or-search
-[ -z "${terminfo[khome]}" ] || bindkey "${terminfo[khome]}" beginning-of-line
-[ -z "${terminfo[kend]}" ]  || bindkey "${terminfo[kend]}"  end-of-line
-[ -z "${terminfo[kcbt]}" ]  || bindkey "${terminfo[kcbt]}"  reverse-menu-complete
+[ -z "${terminfo[kpp]}" ]   || bindkey "${terminfo[kpp]}"   \
+    up-line-or-history
+[ -z "${terminfo[knp]}" ]   || bindkey "${terminfo[knp]}"   \
+    down-line-or-history
+[ -z "${terminfo[kcuu1]}" ] || bindkey "${terminfo[kcuu1]}" \
+    history-substring-search-up
+[ -z "${terminfo[kcuu2]}" ] || bindkey "${terminfo[kcuu2]}" \
+    history-substring-search-down
+[ -z "${terminfo[khome]}" ] || bindkey "${terminfo[khome]}" \
+    beginning-of-line
+[ -z "${terminfo[kend]}" ]  || bindkey "${terminfo[kend]}"  \
+    end-of-line
+[ -z "${terminfo[kcbt]}" ]  || bindkey "${terminfo[kcbt]}"  \
+    reverse-menu-complete
+
+bindkey -M vicmd k history-substring-search-up
+bindkey -M vicmd j history-substring-search-down
+
 [ -n "${terminfo[kdch1]}" ] \
     && bindkey "${terminfo[kdch1]}" delete-char \
     || {
@@ -151,9 +176,6 @@ bindkey -v
 autoload -Uz edit-command-line
 bindkey -M vicmd v edit-command-line
 
-source ~/software/opp.zsh/opp.zsh
-source ~/software/opp.zsh/opp/surround.zsh
-source ~/software/opp.zsh/opp/textobj-between.zsh
 # So that it doesn't take forever to switch into vim-like normal mode
 export KEYTIMEOUT=100
 
