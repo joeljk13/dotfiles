@@ -38,7 +38,9 @@ let g:syntastic_enable_balloons = 1
 let g:syntastic_auto_loc_list = 1
 
 let g:syntastic_c_check_header = 1
-let g:syntastic_c_compiler_options = '-Wall -Wextra -Wundef -Wshadow'
+let g:syntastic_cpp_check_header = g:syntastic_c_check_header
+
+let s:compiler_options = '-Wall -Wextra -Wundef -Wshadow'
     \ . ' -Wcast-align -Wjump-misses-init -Wstrict-prototypes'
     \ . ' -Wstrict-overflow=4 -Wwrite-strings -Waggregate-return -Wcast-qual'
     \ . ' -Wswitch-default -Wstrict-aliasing -Wconversion -Wunreachable-code'
@@ -50,10 +52,9 @@ let g:syntastic_c_compiler_options = '-Wall -Wextra -Wundef -Wshadow'
     \ . ' -Wredundant-decls -Winline -Wvla -Wdisabled-optimization'
     \ . ' -Wstack-protector -Wvector-operation-performance'
     \ . ' -pedantic-errors -Werror -Wno-error=cast-align -Wno-error=cast-qual'
-    \ . ' -std=c99'
 
-let g:syntastic_cpp_check_header = g:syntastic_c_check_header
-let g:syntastic_cpp_compiler_options = g:syntastic_c_compiler_options
+let g:syntastic_c_compiler_options = s:compiler_options . ' -std=c99'
+let g:syntastic_cpp_compiler_options = s:compiler_options . ' -std=c++11'
 
 " Colorschemes
 
