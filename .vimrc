@@ -53,8 +53,8 @@ let s:compiler_options = '-Wall -Wextra -Wundef -Wshadow'
     \ . ' -Wstack-protector -Wvector-operation-performance'
     \ . ' -pedantic-errors -Werror -Wno-error=cast-align -Wno-error=cast-qual'
 
-let g:syntastic_c_compiler_options = s:compiler_options . ' -std=c99'
-let g:syntastic_cpp_compiler_options = s:compiler_options . ' -std=c++11'
+let g:syntastic_c_compiler_options = s:compiler_options . ' -std=gnu99'
+let g:syntastic_cpp_compiler_options = s:compiler_options . ' -std=gnu++11'
 
 " Colorschemes
 
