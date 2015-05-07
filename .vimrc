@@ -18,6 +18,7 @@ filetype plugin indent on
 
 let mapleader = ':LEADER'
 nmap <space> :LEADER
+xmap <space> :LEADER
 
 function! IsWritable()
     return !&readonly && &buftype == "" && &modifiable
@@ -133,15 +134,6 @@ let g:pymore_rope_extract_variable_bind = '<leader>pv'
 let g:pymore_rope_use_function_bind = '<leader>pu'
 let g:pymode_rope_move_bind = '<leader>pa'
 let g:pymode_rope_change_signature_bind = '<leader>ps'
-
-" Colorizer
-
-nnoremap <leader>cC :ColorToggle<cr>
-xnoremap <leader>cC :ColorToggle<cr>
-nnoremap <leader>cT :ColorContrast<cr>
-xnoremap <leader>cT :ColorContrast<cr>
-nnoremap <leader>cf :ColorSwapFgBg<cr>
-xnoremap <leader>cF :ColorSwapFgBg<cr>
 
 execute pathogen#infect()
 
@@ -372,26 +364,36 @@ cnoremap <silent> <f13> <esc>
 
 augroup vimrc_comments
     autocmd!
-    autocmd FileType c,cpp,java,javascript :let b:linecomment='//'
-    autocmd FileType python,ruby :let b:linecomment='#'
-    autocmd FileType lisp,scheme,asm :let b:linecomment=';'
-    autocmd FileType vim :let b:linecomment='"'
-    autocmd FileType tex :let b:linecomment='%'
+
+    " These are characters that will comment out the rest of that line
+    autocmd FileType c,cpp,java,javascript let b:linecomment = '//'
+    autocmd FileType python,ruby let b:linecomment = '#'
+    autocmd FileType lisp,scheme,asm let b:linecomment = ';'
+    autocmd FileType vim let b:linecomment = '"'
+    autocmd FileType tex let b:linecomment = '%'
 augroup END
 
-" TODO - fix the commenting functions. They don't really work at the moment.
+function! SetLineComment()
+    if exists('b:linecomment')
+        return
+    endif
 
+    if &commentstring =~ '\s*%s$'
+        let b:linecomment = substitute(&commentstring, '\s*%s$', '', '')
+    else
+        echoerr 'Could not set line comment.'
+    endif
+endfunction
+
+" Assumes b:linecomment exists.
 function! AddLineComment() range
     let l:min = -1
     let l:lines = range(a:firstline, a:lastline)
 
-    " Get the minimal indent and set empty lines to just the comment char(s)
     for l:line in l:lines
         let l:linetext = getline(l:line)
 
-        if empty(l:linetext)
-            call setline(l:line, b:linecomment)
-        else
+        if !empty(l:linetext)
             let l:indent = indent(l:line)
             if l:indent < l:min || l:min < 0
                 let l:min = l:indent
@@ -399,28 +401,76 @@ function! AddLineComment() range
         endif
     endfor
 
-    " Indent comments to l:min at least and comment out non-commented out lines
     for l:line in l:lines
-        let l:linetext = getline(l:line)
-        let l:indent = indent(l:line)
+        let l:text = getline(l:line)
 
-        if l:linetext =~ '\V\^\s\*' . b:linecomment
-            let l:spaces = l:min - l:indent
-            if l:spaces > 0
-                call setline(l:line, printf('%' . l:spaces . 's', '') . l:linetext)
-            endif
+        if empty(l:text)
+            let l:newtext = repeat(" ", l:min) . b:linecomment
         else
-            call setline(l:line, substitute(l:linetext, '.\{' . l:min . '\}',
-                        \ '\0' . b:linecomment . ' ', ''))
+            let l:newtext = substitute(l:text, '.\{' . l:min . '\}', '\0' .
+                        \ b:linecomment . ' ', '')
         endif
+
+        call setline(l:line, l:newtext)
     endfor
 endfunction
 
+" Assumes the line is actually commented out with b:linecomment.
 function! SubLineComment()
-    let l:linenum = line('.')
-    call setline(l:linenum, substitute(getline(l:linenum), '\V' . b:linecomment
-                \ . ' ', '', ''))
+    let l:line = line('.')
+    let l:text = getline(l:line)
+
+    if l:text =~ '\V\^\s\*' . b:linecomment . '\$'
+        let l:newtext = ""
+    else
+        let l:newtext = substitute(l:text, '\V' . b:linecomment . ' ', '', '')
+    endif
+
+    call setline(l:line, l:newtext)
 endfunction
+
+" These will probably support multi-line comments at some point, but their use
+" is rare enough for me not to warrant special treatment - it's easier to just
+" type them in.
+
+function! AddComment() range
+    if !exists('b:linecomment')
+        call SetLineComment()
+    endif
+
+    execute a:firstline . ',' . a:lastline . 'call AddLineComment()'
+endfunction
+
+function! SubComment() range
+    if !exists('b:linecomment')
+        call SetLineComment()
+    endif
+
+    execute a:firstline . ',' . a:lastline . 'call SubLineComment()'
+endfunction
+
+function! s:AddComment_(type)
+    execute line("'[") . ',' . line("']") . 'call AddComment()'
+endfunction
+
+function! s:SubComment_(type)
+    execute line("'[") . ',' . line("']") . 'call SubComment()'
+endfunction
+
+command! -range -bar AddComment execute <line1> . ',' . <line2> .
+            \ 'call AddComment()'
+command! -range -bar SubComment execute <line1> . ',' . <line2> .
+            \ 'call SubComment()'
+
+xnoremap <silent> <leader>ca :AddComment<cr>
+nnoremap <silent> <leader>ca :<c-u>set opfunc=<sid>AddComment_<cr>g@
+nnoremap <silent> <leader>cca :<c-u>set opfunc=<sid>AddComment_<cr>:execute
+            \ 'normal! ' . v:count1 . 'g@_'<cr>
+
+xnoremap <silent> <leader>cs :SubComment<cr>
+nnoremap <silent> <leader>cs :<c-u>set opfunc=<sid>SubComment_<cr>g@
+nnoremap <silent> <leader>ccs :<c-u>set opfunc=<sid>SubComment_<cr>:execute
+            \ 'normal! ' . v:count1 . 'g@_'<cr>
 
 " To create temporary vimscript inline in a file and run in, just select it in
 " visual mode and type `:call Execute()`. Another option would be to create a
