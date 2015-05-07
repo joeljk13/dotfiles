@@ -256,7 +256,7 @@ set showcmd
 set scrolloff=2
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 set tabpagemax=64
-set cinoptions=Ls,:0,(0,g0
+set cinoptions=Ls,:0,(s,g0
 set timeout ttimeout timeoutlen=1000 ttimeoutlen=100
 set splitright splitbelow
 
