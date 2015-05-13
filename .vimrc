@@ -37,6 +37,10 @@ let g:syntastic_style_warning_symbol = "✗"
 let g:syntastic_enable_balloons = 1
 let g:syntastic_auto_loc_list = 0
 
+" lacheck is really stupid and can't suppress warnings/errors, so just don't
+" use it.
+let g:syntastic_tex_checkers = ['chktex']
+
 let g:syntastic_c_check_header = 1
 let g:syntastic_cpp_check_header = g:syntastic_c_check_header
 
