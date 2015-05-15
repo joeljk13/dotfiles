@@ -248,7 +248,7 @@ set wildmenu
 set wildmode=longest:full,full
 
 set sessionoptions-=options
-set viminfo='1024,f1
+set viminfo=%,'1024,f1
 set history=1024
 set virtualedit=block
 set nojoinspaces
