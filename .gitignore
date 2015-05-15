@@ -9,6 +9,8 @@ TAGS
 # Vim swap files
 .*.swp
 
+Session.vim
+
 # I ususally have a pdf-aux directory for Latex's files that compilation
 # generates
 PDF-AUX/
