@@ -179,6 +179,7 @@ augroup END
 " Tabs and spaces settings for indenting
 
 set tabstop=4 softtabstop=0 shiftwidth=4 expandtab
+inoremap <s-tab> <c-d>
 
 function! s:AutoTab()
     if !IsWritable()
