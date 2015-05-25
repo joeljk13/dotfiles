@@ -80,11 +80,13 @@ git_prompt()
         || ref=$(git rev-parse --short HEAD 2>/dev/null) \
         || return 0
 
-    [ -z "$(git status --porcelain --ignore-submodules)" ] \
-        && st="$green✔" \
-        || st="$red✗"
+    if [ $(git rev-parse --is-inside-work-tree 2>/dev/null) = true ]; then
+        [ -z "$(git status --porcelain --ignore-submodules 2>/dev/null)" ] \
+            && st="$green✔$reset" \
+            || st="$red✗$reset"
+    fi
 
-    echo " $yellow(${ref#refs/heads/}$reset$st$reset$yellow)$reset"
+    echo " $yellow(${ref#refs/heads/}$reset$st$yellow)$reset"
 }
 
 zsh_prompt()
