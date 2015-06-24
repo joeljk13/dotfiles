@@ -16,10 +16,12 @@ HOME_PATH = ~
 all: $(DEF_TARGETS)
 
 vim-plugins:
-	$(DOTFILES_PATH)/update-vim-plugins $(VIM_PLUGIN_PATH)
+	cp ~/.dotfiles/update-vim-plugins ~/.vim-plugins/update
+	~/.vim-plugins/update
 
 zsh-plugins:
-	$(DOTFILES_PATH)/update-zsh-plugins $(ZSH_PLUGIN_PATH)
+	cp ~/.dotfiles/update-zsh-plugins ~/.zsh-plugins/update
+	~/.zsh-plugins/update
 
 # To update tmux plugins, do PREFIX + U
 
