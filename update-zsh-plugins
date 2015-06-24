@@ -1,14 +1,13 @@
 #!/bin/sh
 
-if [ ! -d "$1" ]; then
-    echo "Error: invalid vim plugin path '$1'" >&2
+if [ ! -d "$HOME/.zsh-plugins" ]; then
+    echo "error: '$HOME/.zsh-plugins' is not a directory" >&2
     exit 1
 fi
-
-cd "$1"
+cd "$HOME/.zsh-plugins"
 
 for plugin in *; do
-    cd "$1$plugin"
+    cd "$HOME/.zsh-plugins/$plugin"
 
     git submodule update --init --recursive >/dev/null 2>&1
     git upa >/dev/null 2>&1
