@@ -1,59 +1,68 @@
 SHELL = /bin/sh
 .SUFFIXES:
 
-DEF_TARGETS = vim-plugins zsh-plugins dot-vim dot-bash dot-zsh dot-lynx \
-	dot-tmux dot-git dot-profile dot-shell dot-i3 dot-x make
+.PHONY: all
+all: ~/.vimrc ~/.bashrc ~/.bash_profile ~/.zshrc ~/.shellrc ~/.zprofile \
+	~/.profile ~/.lynxrc ~/.tmux.conf ~/.gitconfig ~/.gitignore ~/.i3/config \
+	~/.xinitrc ~/Makefile
 
-OTHER_TARGETS = all
+~/.vim-plugins/update: ~/.dotfiles/update-vim-plugins
+	cp $< $@
 
-VIM_PLUGIN_PATH = ~/.vim-plugins/
-ZSH_PLUGIN_PATH = ~/.zsh-plugins/
-DOTFILES_PATH = ~/.dotfiles
-HOME_PATH = ~
+~/.zsh-plugins/update: ~/.dotfiles/update-zsh-plugins
+	cp $< $@
 
-.PHONY: $(DEF_TARGETS) $(OTHER_TARGETS)
-
-all: $(DEF_TARGETS)
-
+.PHONY: vim-plugins
 vim-plugins:
 	cp ~/.dotfiles/update-vim-plugins ~/.vim-plugins/update
 	~/.vim-plugins/update
 
+.PHONY: zsh-plugins
 zsh-plugins:
 	cp ~/.dotfiles/update-zsh-plugins ~/.zsh-plugins/update
 	~/.zsh-plugins/update
 
 # To update tmux plugins, do PREFIX + U
 
-dot-vim:
-	cp $(DOTFILES_PATH)/.vimrc $(HOME_PATH)
+~/.vimrc: ~/.dotfiles/.vimrc
+	cp $< $@
 
-dot-bash:
-	cp $(DOTFILES_PATH)/.bash* $(HOME_PATH)
+~/.bashrc: ~/.dotfiles/.bashrc
+	cp $< $@
 
-dot-zsh:
-	cp $(DOTFILES_PATH)/.zsh* $(HOME_PATH)
+~/.bash_profile: ~/.dotfiles/.bash_profile
+	cp $< $@
 
-dot-lynx:
-	cp $(DOTFILES_PATH)/.lynxrc $(HOME_PATH)
+~/.zshrc: ~/.dotfiles/.zshrc
+	cp $< $@
 
-dot-tmux:
-	cp $(DOTFILES_PATH)/.tmux.conf $(HOME_PATH)
+~/.shellrc: ~/.dotfiles/.shellrc
+	cp $< $@
 
-dot-git:
-	cp $(DOTFILES_PATH)/.gitconfig $(DOTFILES_PATH)/.gitignore $(HOME_PATH)
+~/.zprofile: ~/.dotfiles/.zprofile
+	cp $< $@
 
-dot-profile:
-	cp $(DOTFILES_PATH)/.*profile $(HOME_PATH)
+~/.profile: ~/.dotfiles/.profile
+	cp $< $@
 
-dot-shell:
-	cp $(DOTFILES_PATH)/.shellrc $(HOME_PATH)
+~/.lynxrc: ~/.dotfiles/.lynxrc
+	cp $< $@
 
-dot-i3:
-	cp -r $(DOTFILES_PATH)/.i3 $(HOME_PATH)
+~/.tmux.conf: ~/.dotfiles/.tmux.conf
+	cp $< $@
 
-dot-x:
-	cp $(DOTFILES_PATH)/.xinitrc $(HOME_PATH)
+~/.gitconfig: ~/.dotfiles/.gitconfig
+	cp $< $@
 
-make:
-	cp $(DOTFILES_PATH)/Makefile $(HOME_PATH)
+~/.gitignore: ~/.dotfiles/.gitignore
+	cp $< $@
+
+~/.i3/config: ~/.dotfiles/.i3/config
+	mkdir -p ~/.i3
+	cp $< $@
+
+~/.xinitrc: ~/.dotfiles/.xinitrc
+	cp $< $@
+
+~/Makefile: ~/.dotfiles/Makefile
+	cp $< $@
