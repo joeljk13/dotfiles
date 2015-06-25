@@ -7,7 +7,7 @@ fi
 cd "$HOME/.zsh-plugins"
 
 for plugin in *; do
-    cd "$HOME/.zsh-plugins/$plugin"
+    cd "$HOME/.zsh-plugins/$plugin" || continue
 
     git submodule update --init --recursive >/dev/null 2>&1
     git upa >/dev/null 2>&1
