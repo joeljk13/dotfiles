@@ -12,7 +12,7 @@ mkdir -p "$HOME/.vim/bundle"
 cp vim-pathogen/autoload/pathogen.vim "$HOME/.vim/autoload"
 
 for plugin in *; do
-    cd "$HOME/.vim-plugins/$plugin" || continue
+    cd "$HOME/.vim-plugins/$plugin" 2>/dev/null || continue
 
     git submodule update --init --recursive >/dev/null 2>&1
     git upa >/dev/null 2>&1
