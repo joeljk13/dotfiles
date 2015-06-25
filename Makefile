@@ -13,13 +13,11 @@ all: ~/.vimrc ~/.bashrc ~/.bash_profile ~/.zshrc ~/.shellrc ~/.zprofile \
 	cp $< $@
 
 .PHONY: vim-plugins
-vim-plugins:
-	cp ~/.dotfiles/update-vim-plugins ~/.vim-plugins/update
+vim-plugins: ~/.vim-plugins/update
 	~/.vim-plugins/update
 
 .PHONY: zsh-plugins
-zsh-plugins:
-	cp ~/.dotfiles/update-zsh-plugins ~/.zsh-plugins/update
+zsh-plugins: ~/.zsh-plugins/update
 	~/.zsh-plugins/update
 
 # To update tmux plugins, do PREFIX + U
