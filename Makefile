@@ -4,7 +4,7 @@ SHELL = /bin/sh
 .PHONY: all
 all: ~/.vimrc ~/.bashrc ~/.bash_profile ~/.zshrc ~/.shellrc ~/.zprofile \
 	~/.profile ~/.lynxrc ~/.tmux.conf ~/.gitconfig ~/.gitignore ~/.i3/config \
-	~/.xinitrc ~/Makefile
+	~/.xinitrc ~/Makefile vim-plugins zsh-plugins
 
 ~/.vim-plugins/update: ~/.dotfiles/update-vim-plugins
 	cp $< $@
