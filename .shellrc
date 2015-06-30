@@ -1,6 +1,8 @@
 # This is designed to be a common script for bash and zsh to run on
 # initialization
 
+alias sx=startx
+
 alias g=git
 alias v='f -e vim -b viminfo'
 alias no='yes n'
