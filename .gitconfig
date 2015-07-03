@@ -65,6 +65,7 @@
 
     ss = stash
     sp = stash pop
+    sa = stash apply
 
     st = status
     stat = status
