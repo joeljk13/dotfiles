@@ -72,7 +72,7 @@
 
     cm = commit -v
     cma = !git add . && git commit -v
-    cmd = commit -v --amend --reset-author
+    cmd = commit -v --amend --reset-date
 
     rb = rebase --stat
     rba = rebase --abort
