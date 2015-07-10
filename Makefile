@@ -7,10 +7,10 @@ all: ~/.vimrc ~/.bashrc ~/.bash_profile ~/.zshrc ~/.shellrc ~/.zprofile \
 	~/.xinitrc ~/Makefile vim-plugins zsh-plugins
 
 ~/.vim-plugins/update: ~/.dotfiles/update-vim-plugins
-	cp $< $@
+	cp "$<" "$@"
 
 ~/.zsh-plugins/update: ~/.dotfiles/update-zsh-plugins
-	cp $< $@
+	cp "$<" "$@"
 
 .PHONY: vim-plugins
 vim-plugins: ~/.vim-plugins/update
@@ -23,44 +23,44 @@ zsh-plugins: ~/.zsh-plugins/update
 # To update tmux plugins, do PREFIX + U
 
 ~/.vimrc: ~/.dotfiles/.vimrc
-	cp $< $@
+	cp "$<" "$@"
 
 ~/.bashrc: ~/.dotfiles/.bashrc
-	cp $< $@
+	cp "$<" "$@"
 
 ~/.bash_profile: ~/.dotfiles/.bash_profile
-	cp $< $@
+	cp "$<" "$@"
 
 ~/.zshrc: ~/.dotfiles/.zshrc
-	cp $< $@
+	cp "$<" "$@"
 
 ~/.shellrc: ~/.dotfiles/.shellrc
-	cp $< $@
+	cp "$<" "$@"
 
 ~/.zprofile: ~/.dotfiles/.zprofile
-	cp $< $@
+	cp "$<" "$@"
 
 ~/.profile: ~/.dotfiles/.profile
-	cp $< $@
+	cp "$<" "$@"
 
 ~/.lynxrc: ~/.dotfiles/.lynxrc
-	cp $< $@
+	cp "$<" "$@"
 
 ~/.tmux.conf: ~/.dotfiles/.tmux.conf
-	cp $< $@
+	cp "$<" "$@"
 
 ~/.gitconfig: ~/.dotfiles/.gitconfig
-	cp $< $@
+	cp "$<" "$@"
 
 ~/.gitignore: ~/.dotfiles/.gitignore
-	cp $< $@
+	cp "$<" "$@"
 
 ~/.i3/config: ~/.dotfiles/.i3/config
 	mkdir -p ~/.i3
-	cp $< $@
+	cp "$<" "$@"
 
 ~/.xinitrc: ~/.dotfiles/.xinitrc
-	cp $< $@
+	cp "$<" "$@"
 
 ~/Makefile: ~/.dotfiles/Makefile
-	cp $< $@
+	cp "$<" "$@"
