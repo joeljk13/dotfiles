@@ -74,6 +74,8 @@
     cma = !git add . && git commit -v
     cmd = commit -v --amend --reset-date
 
+    cp = cherry-pick
+
     rb = rebase --stat
     rba = rebase --abort
     rbc = rebase --continue
