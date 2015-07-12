@@ -113,18 +113,6 @@ zsh_prompt()
 
 zsh_prompt
 
-[ -d ~/.zsh-plugins/zsh-completions/src ] && \
-    fpath=($fpath ~/.zsh-plugins/zsh-completions/src)
-
-# At the moment, a good order for sourcing is just the reverse of the sorted
-# file name, by coincidence.
-plugins=$(find ~/.zsh-plugins -type f -name \*.zsh \
-    -not -wholename \*test\* | sort -r)
-
-[ -z "$plugins" ] || for plugin in ${=plugins}; do
-    source $plugin
-done
-
 # I don't know all this is necessary, but oh-my-zsh does it and it makes things
 # work (this code is basically taken from oh-my-zsh, but made prettier, IMO).
 # Maybe it's because of bindkey -v?
@@ -185,3 +173,5 @@ alias -g ....='../../..'
 alias -g .....='../../../..'
 
 source ~/.shellrc
+
+source ~/.zsh-plugins/zsh-plugins
