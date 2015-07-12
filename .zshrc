@@ -174,4 +174,4 @@ alias -g .....='../../../..'
 
 source ~/.shellrc
 
-source ~/.zsh-plugins/zsh-plugins
+[[ -f ~/.zsh-plugins/zsh-plugins ]] && source ~/.zsh-plugins/zsh-plugins
