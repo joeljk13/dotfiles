@@ -45,7 +45,7 @@ c() {
     echo "jkottas@cycle${1}.csug.rochester.edu"
 }
 
-if ! ps -u "$USER" | awk '{print $4}' | grep -q '^ssh-agent$'; then
+if ! ps -u "$USER" | awk '{print $NF}' | grep -q '\(^\|/\)ssh-agent$'; then
     eval "$(ssh-agent -s)"
     [[ -f ~/.ssh/id_ed25519 ]] && ssh-add ~/.ssh/id_ed25519
     [[ -f ~/.ssh/id_rsa ]] && ssh-add ~/.ssh/id_rsa
