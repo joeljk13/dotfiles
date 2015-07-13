@@ -4,7 +4,7 @@ SHELL = /bin/sh
 .PHONY: all
 all: ~/.vimrc ~/.bashrc ~/.bash_profile ~/.zshrc ~/.shellrc ~/.zprofile \
 	~/.profile ~/.lynxrc ~/.tmux.conf ~/.gitconfig ~/.gitignore ~/.i3/config \
-	~/.xinitrc ~/Makefile vim-plugins zsh-plugins vim-dirs
+	~/.xinitrc ~/Makefile vim-plugins zsh-plugins vim-dirs bin-dirs
 
 ~/.vim-plugins/update: ~/.dotfiles/update-vim-plugins
 	cp "$<" "$@"
@@ -23,6 +23,13 @@ zsh-plugins: ~/.zsh-plugins/update
 .PHONY: vim-dirs
 vim-dirs:
 	mkdir -p ~/.vim/backup
+
+.PHONY: bin-dirs
+bin-dirs:
+	mkdir -p ~/bin
+	mkdir -p ~/usr/bin
+	mkdir -p ~/.gem/bin
+	mkdir -p ~/lib
 
 # To update tmux plugins, do PREFIX + U
 
