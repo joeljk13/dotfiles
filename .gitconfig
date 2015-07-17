@@ -8,6 +8,7 @@
     excludesfile = ~/.gitignore
     pager = less -XFR
     whitespace = space-before-tab,trailing-space
+    ignorecase = false
 
 [add]
     ignoreErrors = true
