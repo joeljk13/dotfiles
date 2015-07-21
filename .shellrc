@@ -41,10 +41,6 @@ if hash fasd 2>/dev/null; then
     eval "$(fasd --init auto)"
 fi
 
-c() {
-    echo "jkottas@cycle${1}.csug.rochester.edu"
-}
-
 if ! ps -u "$USER" | awk '{print $NF}' | grep -q '\(^\|/\)ssh-agent$'; then
     eval "$(ssh-agent -s)"
     ssh-add
