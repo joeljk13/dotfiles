@@ -364,6 +364,13 @@ vnoremap <silent> <f13> <esc>
 onoremap <silent> <f13> <esc>
 cnoremap <silent> <f13> <esc>
 
+set <f14>=kj
+nmap <silent> <f14> <f13>
+imap <silent> <f14> <f13>
+vmap <silent> <f14> <f13>
+omap <silent> <f14> <f13>
+cmap <silent> <f14> <f13>
+
 augroup vimrc_comments
     autocmd!
 
