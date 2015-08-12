@@ -162,12 +162,20 @@ reset) {%s}%C(auto,green)%d%C(auto,reset)'"
     lgndca = !git lgnd --color=always --all
     lgdnca = !git lgdn --color=always --all
 
-# Branches
+# Where am I?
 
     br = branch
     co = checkout
     com = checkout master
     cob = checkout -b
+
+    is-repo = "![ -d .git ] || [ \"$(git rev-parse --is-inside-work-tree \
+        2>/dev/null)\" = true ]"
+
+    ref = "!git is-repo || exit 128; \
+        f() { ref=\"$(git symbolic-ref -q HEAD)\" \
+        && echo \"$ref\" | sed 's,refs/heads/,,' \
+        || git rev-parse $1 HEAD; }; f"
 
     current-branch = "!git symbolic-ref HEAD 2>/dev/null | \
         sed 's/refs\\/heads\\///'"
