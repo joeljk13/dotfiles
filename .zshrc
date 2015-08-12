@@ -68,20 +68,6 @@ zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' menu select
 zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,comm -w -w"
 
-is_git_repo()
-{
-    [ -d .git ] ||
-        [ "$(git rev-parse --is-inside-work-tree 2>/dev/null)" = true ]
-}
-
-git_ref()
-{
-    is_git_repo || return 128
-    local ref
-    ref=${$(git symbolic-ref -q HEAD)#refs/heads/} && echo $ref ||
-        git rev-parse $1 HEAD
-}
-
 git_prompt()
 {
     local ref st
@@ -90,7 +76,7 @@ git_prompt()
     local yellow="%{${fg[yellow]}%}"
     local reset="%{$reset_color%}"
 
-    ref=$(git_ref --short) || return 0
+    ref=$(git ref --short) || return 0
 
     [ -z "$(git status --porcelain --ignore-submodules 2>/dev/null)" ] \
         && st="$green✔$reset" \
