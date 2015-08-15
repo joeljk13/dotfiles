@@ -92,6 +92,13 @@
 
     sw = show
 
+    # git bisect requires being in top repo dir
+    bs = !git bisect
+    bss = !git bisect start
+    bse = !git bisect reset
+    bsg = !git bisect good
+    bsb = !git bisect bad
+
 # Logging
 
     last = log -1
