@@ -1,5 +1,10 @@
 source ~/.profile
 
+case $- in
+    (*i*) ;;
+    (*) exit
+esac
+
 # Much of this customization was inspired by oh-my-zsh; I wanted a more DIY
 # approach than oh-my-zsh, though, so I've set things up myself, but using
 # oh-my-zsh as a model.
