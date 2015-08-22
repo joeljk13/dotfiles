@@ -16,6 +16,7 @@
 [merge]
     tool = vimdiff
     conflictstyle = diff3
+    stat = true
 
 [rebase]
     stat = true
@@ -77,11 +78,11 @@
 
     cp = cherry-pick
 
-    rb = rebase --stat
+    rb = rebase
     rba = rebase --abort
     rbc = rebase --continue
     rbs = rebase --skip
-    rbm = rebase --stat master
+    rbm = rebase master
     rbi = rebase -i
     mg = "!f() { git merge --ff-only --stat \"$@\" || git merge --stat \
         --no-commit --log \"$@\" && git commit -v; }; f"
