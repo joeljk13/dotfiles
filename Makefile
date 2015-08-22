@@ -75,3 +75,11 @@ bin-dirs:
 
 ~/Makefile: ~/.dotfiles/Makefile
 	cp "$<" "$@"
+
+.PHONY: transfer
+transfer:
+	~/.dotfiles/transfer xz zip
+
+.PHONY: clean
+clean:
+	rm -f ~/dotfiles.*

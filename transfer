@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+
+set -e
+
+files=".dotfiles .zsh-plugins .vim-plugins .tmux .tmuxline .fonts"
+
+xz=false
+bzip2=false
+gzip=false
+zip=false
+tar=false
+
+for arg; do
+    case "$arg" in
+        (xz|lzma)
+            xz=true
+            ;;
+
+        (bz|bzip2)
+            bzip2=true
+            ;;
+
+        (gz|gzip)
+            gzip=true
+            ;;
+
+        (zip)
+            zip=true
+            ;;
+
+        (tar)
+            tar=true
+            ;;
+    esac
+done
+
+cd ~
+
+for file in $files; do
+    [ -d "$file" ] || [ -f "$file" ] || {
+        echo "$file does not exist" >&2
+        exit 1
+    }
+done
+
+if $xz; then
+    tar cJf dotfiles.tar.xz $files &
+fi
+
+if $bzip2; then
+    tar cjf dotfiles.tar.bz2 $files &
+fi
+
+if $gzip; then
+    tar czf dotfiles.tar.gz $files &
+fi
+
+if $zip; then
+    zip -rq dotfiles.zip $files &
+fi
+
+if $tar; then
+    tar cf dotfiles.tar $files &
+fi
+
+wait
