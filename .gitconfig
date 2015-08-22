@@ -103,7 +103,9 @@
 # Logging
 
     last = log -1
-    laste = log -1 --no-merges --patch --stat
+    laste = log -1 --patch --stat
+
+    lge = log --patch --stat
 
     # General overview log
     lg = log --graph --abbrev=4 "--pretty=format:'%C(auto,yellow)#%h%C(auto,\
@@ -142,9 +144,6 @@ reset) {%s}%C(auto,green)%d%C(auto,reset)'"
 <C: %C(auto,cyan)%ci%C(auto,reset) %C(auto,green)(%cr)%C(auto,reset)>'"
 
     # TODO - logs for detailed descriptions
-
-    # TODO - customize this more, maybe
-    lge = log --patch --stat --no-merges
 
     lga = !git lg --all
     lgda = !git lgd --all
