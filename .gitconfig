@@ -204,6 +204,6 @@ reset) {%s}%C(auto,green)%d%C(auto,reset)'"
 
 # Github
 
-    hub = "!tmp() { git clone \"github:$1/$2.git\"; }; tmp"
+    hub = "!f() { git clone \"github:$1/$2.git\"; }; f"
 
     pr = !git pull-requests
