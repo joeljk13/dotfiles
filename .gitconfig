@@ -175,28 +175,11 @@ reset) {%s}%C(auto,green)%d%C(auto,reset)'"
     com = checkout master
     cob = checkout -b
 
-    is-repo = "![ -d .git ] || [ \"$(git rev-parse --is-inside-work-tree \
-        2>/dev/null)\" = true ]"
-
-    ref = "!git is-repo || exit 128; \
-        f() { ref=\"$(git symbolic-ref -q HEAD)\" \
-        && echo \"$ref\" | sed 's,refs/heads/,,' \
-        || git rev-parse $1 HEAD; }; f"
-
-    current-branch = "!git symbolic-ref HEAD 2>/dev/null | \
-        sed 's/refs\\/heads\\///'"
-
-    branches = "!git for-each-ref --shell --format='%(refname)' refs/heads/ | \
-        sed 's/refs\\/heads\\///' | tr -d \\'"
-
 # Remotes
 
     fa = fetch --all
     up = pull --ff-only
-    upa = "!c=$(git current-branch); \
-        for branch in $(git branches); do \
-        git checkout $branch && git pull --ff-only 2>/dev/null; \
-        done; git checkout $c"
+    upa = update-all
 
     ps = push
     pl = pull

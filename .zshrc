@@ -81,7 +81,7 @@ git_prompt()
     local yellow="%{${fg[yellow]}%}"
     local reset="%{$reset_color%}"
 
-    ref=$(git ref --short) || return 0
+    ref=$(git ref --short 2>/dev/null) || return 0
 
     [ -z "$(git status --porcelain --ignore-submodules 2>/dev/null)" ] \
         && st="$green✔$reset" \

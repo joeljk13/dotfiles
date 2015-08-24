@@ -2,7 +2,7 @@
 
 set -e
 
-files=".dotfiles .zsh-plugins .vim-plugins .tmux .tmuxline .fonts"
+files=".dotfiles .zsh-plugins .vim-plugins .tmux .tmuxline .git-scripts .fonts"
 
 xz=false
 bzip2=false
