@@ -84,8 +84,7 @@
     rbs = rebase --skip
     rbm = rebase master
     rbi = rebase -i
-    mg = "!f() { git merge --ff-only --stat \"$@\" || git merge --stat \
-        --no-commit --log \"$@\" && git commit -v; }; f"
+    mg = "!f() { git merge --no-commit --log \"$@\" && git commit -v; }; f"
     mt = mergetool
 
     wipe = !git commit -aqm 'WIPE COMMIT' && git reset --hard HEAD^
