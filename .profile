@@ -5,3 +5,4 @@ export LD_LIBRARY_PATH="$HOME/lib"
 export TERM=xterm-256color
 export PAGER=less
 export LESS=-XFR
+export MANPATH="$HOME/usr/share/man:/usr/man:/usr/share/man:/usr/local/share/man"
