@@ -16,7 +16,7 @@ for plugin in *; do
         cd "$HOME/.vim-plugins/$plugin" 2>/dev/null || exit
 
         git submodule update --init --recursive >/dev/null 2>&1
-        git upa >/dev/null 2>&1
+        git update-all >/dev/null 2>&1
 
         if [ -z "$(find "$HOME/.vim/bundle" -maxdepth 1 -type d -name \
             "$plugin")" ]; then
