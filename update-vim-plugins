@@ -12,24 +12,28 @@ mkdir -p "$HOME/.vim/bundle"
 cp vim-pathogen/autoload/pathogen.vim "$HOME/.vim/autoload"
 
 for plugin in *; do
-    cd "$HOME/.vim-plugins/$plugin" 2>/dev/null || continue
+    (
+        cd "$HOME/.vim-plugins/$plugin" 2>/dev/null || exit
 
-    git submodule update --init --recursive >/dev/null 2>&1
-    git upa >/dev/null 2>&1
+        git submodule update --init --recursive >/dev/null 2>&1
+        git upa >/dev/null 2>&1
 
-    if [ -z "$(find "$HOME/.vim/bundle" -maxdepth 1 -type d -name \
-        "$plugin")" ]; then
+        if [ -z "$(find "$HOME/.vim/bundle" -maxdepth 1 -type d -name \
+            "$plugin")" ]; then
 
-        mkdir "$HOME/.vim/bundle/$plugin"
-    else
-        if [ -z "$(find "$HOME/.vim/bundle/$plugin" -maxdepth 1 -type d -name \
-            "plugin")" ]; then
+            mkdir "$HOME/.vim/bundle/$plugin"
+        else
+            if [ -z "$(find "$HOME/.vim/bundle/$plugin" -maxdepth 1 -type d -name \
+                "plugin")" ]; then
 
-            continue
+                exit
+            fi
         fi
-    fi
 
-    # Note: DO NOT first remove what is in there; just copy over and replace.
-    # This way any extra files manually added won't be overwritten.
-    cp -r * "$HOME/.vim/bundle/$plugin"
+        # Note: DO NOT first remove what is in there; just copy over and replace.
+        # This way any extra files manually added won't be overwritten.
+        cp -r * "$HOME/.vim/bundle/$plugin"
+    ) &
 done
+
+wait
