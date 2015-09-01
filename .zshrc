@@ -2,7 +2,7 @@ source ~/.profile
 
 case $- in
     (*i*) ;;
-    (*) exit
+    (*) return
 esac
 
 # Much of this customization was inspired by oh-my-zsh; I wanted a more DIY

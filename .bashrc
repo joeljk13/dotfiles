@@ -7,7 +7,7 @@
 # If not running interactively, don't do anything
 case $- in
     (*i*) ;;
-    (*) exit
+    (*) return
 esac
 
 # Don't put duplicate commands in history
