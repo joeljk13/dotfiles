@@ -17,6 +17,7 @@
     tool = vimdiff
     conflictstyle = diff3
     stat = true
+    renameLimit = 1000000000
 
 [rebase]
     stat = true
@@ -36,6 +37,7 @@
 [diff]
     mnemonicprefix = true
     renames = copies
+    renameLimit = 1000000000
 
 [advice]
     pushUpdateRejected = false
