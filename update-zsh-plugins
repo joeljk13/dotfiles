@@ -17,3 +17,5 @@ for plugin in *; do
         [ -z "$tag" ] || git checkout --quiet "$tag"
     ) &
 done
+
+wait
