@@ -12,5 +12,8 @@ for plugin in *; do
 
         git submodule update --init --recursive >/dev/null 2>&1
         git update-all >/dev/null 2>&1
+
+        tag="$(git tag | tail -1)"
+        [ -z "$tag" ] || git checkout --quiet "$tag"
     ) &
 done
