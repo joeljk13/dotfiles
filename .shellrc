@@ -74,9 +74,25 @@ if hash fasd 2>/dev/null; then
     eval "$(fasd --init auto)"
 fi
 
-if ! ps -u "$USER" | awk '{print $NF}' | grep -q '\(^\|/\)ssh-agent$'; then
-    eval "$(ssh-agent -s)"
+init_ssh_agent()
+{
+    local file=/tmp/deb38eea2f69cc8698d05ac827f00c608b715a5a
+    local pid="$(pgrep -o ssh-agent)" file_exists=false
+    [ -S "$file" ] && file_exists=true
+    if [ -n "$pid" ] && $file_exists; then
+        export SSH_AUTH_SOCK="$file"
+        export SSH_AGENT_PID="$pid"
+        return
+    fi
+    if [ -z "$pid" ] && $file_exists; then
+        env rm -f "$file"
+    elif [ -n "$pid" ] && ! $file_exists; then
+        killall -u "$USER" ssh-agent
+    fi
+    eval "$(ssh-agent -s -a "$file")"
     ssh-add
-fi
+}
+
+init_ssh_agent
 
 # vim:set ft=sh:
