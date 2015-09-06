@@ -26,22 +26,33 @@ _SHELLRC_TMPDIR="$(mktemp -d)"
 alias shred='shred -z'
 rm()
 {
-    local arg
+    local arg dashdash=false files
+    declare -a files
     for arg; do
-        localarg="$(sed <<< "$arg" "s|^$HOME||")"
-        if [[ "${localarg:0:1}" = "/" ]]; then
-            echo "Refusing to remove $arg" >&2
-            return 1
-        fi
+        case "$(sed <<< "$arg" "s|^$HOME||")" in
+            (/*)
+                echo "Refusing to remove $arg" >&2
+                return 1
+                ;;
+            (--)
+                ! $dashdash && dashdash=true || files+="--"
+                ;;
+            (-*)
+                $dashdash && files+="$arg"
+                ;;
+            (*)
+                files+="$arg"
+                ;;
+        esac
     done
     mkdir -p "$_SHELLRC_TMPDIR"
     sync
-    if [ "$(du --total "$@" | tail -1 | awk '{print $1}')" -gt "$(df \
+    if [ "$(du --total -- $files | tail -1 | awk '{print $1}')" -gt "$(df \
         --output=avail "$_SHELLRC_TMPDIR" | awk 'NR == 2')" ]; then
         echo "Refusing to remove - too big" >&2
         return 1
     fi
-    scp "$@" "$_SHELLRC_TMPDIR" && env rm "$@"
+    cp "$@" "$_SHELLRC_TMPDIR" && env rm "$@"
 }
 
 alias "jk:wq"="echo You\'re not in vim."
