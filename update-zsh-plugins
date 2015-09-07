@@ -10,6 +10,8 @@ for plugin in *; do
     (
         cd "$HOME/.zsh-plugins/$plugin" 2>/dev/null || exit
 
+        sleep $(($RANDOM % 30))
+
         git submodule update --init --recursive >/dev/null 2>&1
         git update-all >/dev/null 2>&1
 
