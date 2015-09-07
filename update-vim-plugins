@@ -21,6 +21,8 @@ for plugin in *; do
         tag="$(git tag | tail -1)"
         [ -z "$tag" ] || git checkout --quiet "$tag"
 
+        [ "$plugin" = "vimproc.vim" ] && make
+
         if [ -z "$(find "$HOME/.vim/bundle" -maxdepth 1 -type d -name \
             "$plugin")" ]; then
 
