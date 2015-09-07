@@ -29,6 +29,7 @@ bin-dirs:
 	mkdir -p ~/bin
 	mkdir -p ~/usr/bin
 	mkdir -p ~/.gem/bin
+	mkdir -p ~/.cabal/bin
 	mkdir -p ~/lib
 
 # To update tmux plugins, do PREFIX + U

@@ -1,4 +1,4 @@
-export PATH="$HOME/bin:$HOME/usr/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:$HOME/.git-scripts:$HOME/.gem/bin"
+export PATH="$HOME/bin:$HOME/usr/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:$HOME/.git-scripts:$HOME/.cabal/bin:$HOME/.gem/bin"
 export EDITOR=vim
 export LANG=en_US.UTF-8
 export LD_LIBRARY_PATH="$HOME/lib"
