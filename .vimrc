@@ -140,11 +140,20 @@ let g:pymore_rope_use_function_bind = '<leader>pu'
 let g:pymode_rope_move_bind = '<leader>pa'
 let g:pymode_rope_change_signature_bind = '<leader>ps'
 
+" haskellmode
+
+let g:haddock_browser = "/usr/bin/firefox"
+
 execute pathogen#infect()
 
 augroup vimrc_syntastic
     autocmd!
     autocmd BufRead * if !IsWritable() | let b:syntastic_mode = "passive" | endif
+augroup END
+
+augroup vimrc_haskellmode
+    autocmd!
+    autocmd BufEnter *.hs compiler ghc
 augroup END
 
 " Rainbow Parentheses
