@@ -173,6 +173,41 @@ alias -g ...='../..'
 alias -g ....='../../..'
 alias -g .....='../../../..'
 
+_SHELLRC_TMPDIR="$(mktemp -d)"
+rm()
+{
+    local arg localarg dashdash=false files
+    declare -a files
+    for arg; do
+        localarg=$(sed <<< $arg "s|^$HOME||")
+        case $localarg in
+            (/*)
+                echo "Refusing to remove $arg" >&2
+                return 1
+            (--)
+                ! $dashdash && dashdash=true || files+="--"
+                ;;
+            (-*)
+                $dashdash && files+=$arg
+                ;;
+            (*)
+                if [[ -z $localarg ]]; then
+                    echo "Refusing to remove '$arg'" >&2
+                    return 1
+                fi
+                files+=$arg
+        esac
+    done
+    mkdir -p $_SHELLRC_TMPDIR
+    sync
+    if [ "$(du --total -- ${=files} | tail -1 | awk '{print $1}')" -gt "$(df \
+        --output=avail $_SHELLRC_TMPDIR | awk 'NR == 2')" ]; then
+        echo "Refusing to remove - too big" >&2
+        return 1
+    fi
+    cp $@ $_SHELLRC_TMPDIR && env rm $@
+}
+
 source ~/.shellrc
 
 [[ -f ~/.zsh-plugins/zsh-plugins ]] && source ~/.zsh-plugins/zsh-plugins
