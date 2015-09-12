@@ -207,7 +207,7 @@ rm()
         echo "Refusing to remove - too big" >&2
         return 1
     fi
-    cp $@ $_SHELLRC_TMPDIR && env rm $@
+    cp -p $@ $_SHELLRC_TMPDIR && env rm $@
 }
 
 source ~/.shellrc
