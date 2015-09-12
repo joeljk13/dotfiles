@@ -184,6 +184,7 @@ rm()
             (/*)
                 echo "Refusing to remove $arg" >&2
                 return 1
+                ;;
             (--)
                 ! $dashdash && dashdash=true || files+="--"
                 ;;
@@ -196,6 +197,7 @@ rm()
                     return 1
                 fi
                 files+=$arg
+                ;;
         esac
     done
     mkdir -p $_SHELLRC_TMPDIR
