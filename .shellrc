@@ -46,7 +46,7 @@ fi
 init_ssh_agent()
 {
     local file=/tmp/deb38eea2f69cc8698d05ac827f00c608b715a5a
-    local pid="$(pgrep -o ssh-agent 2>/dev/null)" file_exists=false
+    local pid="$(pgrep -u "$USER" -o ssh-agent)" file_exists=false
     [ -S "$file" ] && file_exists=true
     if [ -n "$pid" ] && $file_exists; then
         export SSH_AUTH_SOCK="$file"
