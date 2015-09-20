@@ -7,10 +7,10 @@ alias g=git
 alias v='f -e vim -b viminfo'
 alias no='yes n'
 
-alias ls='ls --color=auto'
-alias ll='ls -lh --color=auto'
+alias ls='ls -B --color=auto'
+alias ll='ls -Blh --color=auto'
 alias la='ls -lAh --color=auto'
-alias l='ls -lh --color=auto'
+alias l='ls -Blh --color=auto'
 
 alias "cd~"='cd ~'
 alias "cd.."='cd ..'
