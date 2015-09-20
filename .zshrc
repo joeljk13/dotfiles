@@ -202,7 +202,7 @@ rm()
     done
     mkdir -p $_SHELLRC_TMPDIR
     sync
-    if [ "$(du --total -- ${=files} | tail -1 | awk '{print $1}')" -gt "$(df \
+    if [ "$(du --total -- $files | tail -1 | awk '{print $1}')" -gt "$(df \
         --output=avail $_SHELLRC_TMPDIR | awk 'NR == 2')" ]; then
         echo "Refusing to remove - too big" >&2
         return 1
