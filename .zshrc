@@ -40,11 +40,11 @@ setopt INTERACTIVE_COMMENTS
 setopt HASH_EXECUTABLES_ONLY
 setopt RC_QUOTES
 setopt RM_STAR_WAIT
+setopt BG_NICE
 setopt PROMPT_SUBST
 setopt PIPE_FAIL
 setopt LONG_LIST_JOBS
 unsetopt BEEP
-unsetopt BG_NICE
 unsetopt HIST_BEEP
 unsetopt NOMATCH
 unsetopt LIST_BEEP
