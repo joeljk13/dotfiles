@@ -49,7 +49,7 @@ unsetopt HIST_BEEP
 unsetopt NOMATCH
 unsetopt LIST_BEEP
 
-# There are probably way more of these than necessary/useful, but even wiith
+# There are probably way more of these than necessary/useful, but even with
 # them the shell takes less than a second to load.
 zmodload -i zsh/compctl
 zmodload -i zsh/complist
