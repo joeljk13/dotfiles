@@ -210,6 +210,8 @@ rm()
     cp -p $@ $_SHELLRC_TMPDIR && env rm $@
 }
 
+fpath+=~/.zsh-completions
+
 source ~/.shellrc
 
 [[ -f ~/.zsh-plugins/zsh-plugins ]] && source ~/.zsh-plugins/zsh-plugins
