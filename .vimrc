@@ -204,8 +204,9 @@ function! s:AutoTab()
     call cursor(1, 1)
 
     let l:tabs = search('^\t\+\S', 'n')
-    " Ignore 1 space indents; they're probably just for formatting
-    let l:spaces = search('^ \{2,\}\S', 'n')
+    " Only consider 2, 4, or 8 space indents; otherwise it's probably just for
+    " formatting
+    let l:spaces = search('\v^(  |    |        )\S', 'n')
 
     if l:tabs && l:spaces
         echoerr 'This file uses both spaces and tabs for indentation.'
