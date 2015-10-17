@@ -18,9 +18,7 @@ alias "cd..."='cd ../..'
 alias "cd...."='cd ../../..'
 alias "cd....."='cd ../../../..'
 
-if [ -n "$(alias grep 2>/dev/null)" ]; then
-    alias grep='grep --color=auto'
-fi
+alias grep='grep --color=auto'
 
 alias shred='shred -z'
 
