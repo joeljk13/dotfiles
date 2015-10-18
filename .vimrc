@@ -280,6 +280,8 @@ nnoremap <leader>O O<esc>o
 " Use yy instead. Now Y is consistend with C and D.
 nnoremap Y y$
 
+nnoremap U <c-r>
+
 " Window/buffer mappings
 
 nnoremap <leader>- <c-w>s
