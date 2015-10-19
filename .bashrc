@@ -56,4 +56,4 @@ fi
 
 source ~/.shellrc
 
-hash zsh 2>/dev/null
+alias ez='exec zsh'
