@@ -60,6 +60,19 @@ init_ssh_agent()
     ssh-add
 }
 
+init_redshift()
+{
+    if [ -z "$DISPLAY" ] \
+        || ! hash redshift 2>/dev/null \
+        || [ -n "$(pgrep -u "$USER" -o redshift)" ]
+    then
+        return
+    fi
+    nohup redshift &>/dev/null &
+    disown
+}
+
 init_ssh_agent
+init_redshift
 
 # vim:set ft=sh:
