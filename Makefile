@@ -4,7 +4,8 @@ SHELL = /bin/sh
 .PHONY: all
 all: ~/.vimrc ~/.bashrc ~/.bash_profile ~/.zshrc ~/.shellrc ~/.zprofile \
 	~/.profile ~/.lynxrc ~/.tmux.conf ~/.gitconfig ~/.gitignore ~/.i3/config \
-	~/.xinitrc ~/.xsession ~/Makefile vim-plugins zsh-plugins vim-dirs bin-dirs
+	~/.xinitrc ~/.xsession ~/Makefile scripts vim-plugins zsh-plugins vim-dirs \
+	bin-dirs
 
 ~/.vim-plugins/update: ~/.dotfiles/update-vim-plugins
 	cp "$<" "$@"
@@ -79,6 +80,10 @@ bin-dirs:
 
 ~/Makefile: ~/.dotfiles/Makefile
 	cp "$<" "$@"
+
+.PHONY: scripts
+scripts:
+	! [ -d ~/scripts ] || $(MAKE) -C ~/scripts
 
 .PHONY: transfer
 transfer:
