@@ -12,7 +12,6 @@ SAVEHIST=4096
 # See zshoptions(1) for details
 setopt AUTO_CD
 setopt AUTO_PUSHD
-setopt CDABLE_VARS
 setopt PUSHD_IGNORE_DUPS
 setopt PUSHD_TO_HOME
 setopt ALWAYS_TO_END
@@ -42,6 +41,7 @@ setopt PROMPT_SUBST
 setopt PIPE_FAIL
 setopt LONG_LIST_JOBS
 unsetopt BEEP
+unsetopt CDABLE_VARS
 unsetopt HIST_BEEP
 unsetopt NOMATCH
 unsetopt LIST_BEEP
