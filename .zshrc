@@ -169,6 +169,7 @@ export KEYTIMEOUT=100
 alias -g ...='../..'
 alias -g ....='../../..'
 alias -g .....='../../../..'
+alias -g dn='/dev/null'
 
 _SHELLRC_TMPDIR="$(mktemp -d)"
 rm()
