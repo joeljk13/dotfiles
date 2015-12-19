@@ -1,11 +1,11 @@
 # This is designed to be a common script for bash and zsh to run on
 # initialization
 
-alias sx=startx
-
-alias g=git
+alias sx='startx'
+alias g='git'
 alias v='f -e vim -b viminfo'
 alias no='yes n'
+alias ka='killall'
 
 alias ls='ls -B --color=auto'
 alias ll='\ls -Blh --color=auto'
@@ -19,7 +19,6 @@ alias "cd...."='cd ../../..'
 alias "cd....."='cd ../../../..'
 
 alias grep='grep --color=auto'
-
 alias shred='shred -z'
 
 alias "jk:wq"="echo You\'re not in vim."
