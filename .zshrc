@@ -171,6 +171,7 @@ alias -g ....='../../..'
 alias -g .....='../../../..'
 alias -g dn='/dev/null'
 alias -g dz='/dev/zero'
+alias -g dis='&>/dev/null &!'
 
 _SHELLRC_TMPDIR="$(mktemp -d)"
 rm()
