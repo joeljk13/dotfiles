@@ -59,6 +59,13 @@ zmodload -i zsh/terminfo
 zmodload -i zsh/zle
 zmodload -i zsh/zutil
 
+for fp in $fpath; do
+    if grep -q ^$HOME <<<$fp; then
+        fpath+=${fp/$HOME/}
+    fi
+done
+fpath+=~/.zsh-completions
+
 autoload -U colors && colors
 autoload -U compinit && compinit
 autoload -U url-quote-magic && zle -N self-insert url-quote-magic
@@ -209,8 +216,6 @@ rm()
     fi
     cp -p $@ $_SHELLRC_TMPDIR && env rm $@
 }
-
-fpath+=~/.zsh-completions
 
 source ~/.shellrc
 
