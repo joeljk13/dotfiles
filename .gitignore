@@ -6,10 +6,10 @@ TAGS
 *.[ios]
 *.ii
 
-# Vim swap files
+# Vim/plugin files
 .*.swp
-
 Session.vim
+.ropeproject/
 
 # I ususally have a pdf-aux directory for Latex's files that compilation
 # generates
