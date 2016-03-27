@@ -4,6 +4,11 @@
 
 . ~/.profile
 
+case $- in
+    (*i*) ;;
+    (*) return ;;
+esac
+
 # Don't put duplicate commands in history
 HISTCONTROL=ignoredups
 

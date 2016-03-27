@@ -1,5 +1,10 @@
 source ~/.profile
 
+case $- in
+    (*i*) ;;
+    (*) return ;;
+esac
+
 [[ $0 = $(which zsh) ]] || exec $(which zsh)
 
 # Much of this customization was inspired by oh-my-zsh; I wanted a more DIY
