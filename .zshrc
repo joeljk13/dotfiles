@@ -5,7 +5,7 @@ case $- in
     (*) return ;;
 esac
 
-[[ $0 = $(which zsh) ]] || exec $(which zsh)
+[[ $0 = $(which zsh) ]] || exec $(which zsh) $@
 
 # Much of this customization was inspired by oh-my-zsh; I wanted a more DIY
 # approach than oh-my-zsh, though, so I've set things up myself, but using
