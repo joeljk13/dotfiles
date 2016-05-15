@@ -189,6 +189,7 @@ augroup END
 
 set tabstop=4 softtabstop=0 shiftwidth=4 expandtab
 inoremap <s-tab> <c-d>
+set smarttab
 
 function! s:AutoTab()
     if !IsWritable()
@@ -248,14 +249,18 @@ nnoremap <leader>n :call <sid>SetNumber()<cr>
 
 " This fails when editing crontab on ssh, but I don't really care for the mouse
 " that much anyway, so just ignore errors.
+set mouse=
 silent! set mouse=n
 
 " These may be essential enough to go in the top section, but I'm not sure.
 set wildmenu
 set wildmode=longest:full,full
 
+set tags+=./tags,./TAGS,tags,TAGS
+set complete+=i
+set display=uhex
 set sessionoptions-=options
-set viminfo=%,'1024,f1
+set viminfo=%,'1024,f1,!
 set history=1024
 set virtualedit=block
 set nojoinspaces
@@ -264,7 +269,7 @@ set laststatus=2
 set lazyredraw
 set ruler
 set showcmd
-set scrolloff=2
+set scrolloff=1
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 set tabpagemax=64
 set cinoptions=Ls,:0,(s,g0
