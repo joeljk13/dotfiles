@@ -225,3 +225,5 @@ rm()
 source ~/.shellrc
 
 [[ -f ~/.zsh-plugins/zsh-plugins ]] && source ~/.zsh-plugins/zsh-plugins
+
+clear
