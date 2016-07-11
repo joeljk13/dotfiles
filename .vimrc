@@ -555,6 +555,18 @@ augroup vimrc_files
     autocmd BufRead * call AddDir(expand('%:p:h'))
 augroup END
 
+function! UpdateCTags()
+    call system("ctags -R .")
+    call s:FindTags()
+endfunction
+
+function! UpdateCScope()
+    call system("cscope -bR")
+    call s:FindCScope()
+endfunction
+
+nnoremap <silent> <leader>tt :call UpdateCTags() <bar> call UpdateCScope()<cr>
+
 " To create temporary vimscript inline in a file and run in, just select it in
 " visual mode and type `:call Execute()`. Another option would be to create a
 " tmp.vim file with the code and then source it.
