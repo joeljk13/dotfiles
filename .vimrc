@@ -256,7 +256,6 @@ silent! set mouse=n
 set wildmenu
 set wildmode=longest:full,full
 
-set tags+=./tags,./TAGS,tags,TAGS
 set complete+=i
 set display=uhex
 set sessionoptions-=options
@@ -497,6 +496,64 @@ xnoremap <silent> <leader>cs :SubComment<cr>
 nnoremap <silent> <leader>cs :<c-u>set opfunc=<sid>SubComment_<cr>g@
 nnoremap <silent> <leader>ccs :<c-u>set opfunc=<sid>SubComment_<cr>:execute
             \ 'normal! ' . v:count1 . 'g@_'<cr>
+
+let s:dirs = []
+
+function! FindFiles(names)
+    let l:files = []
+    for l:dir in s:dirs
+        for l:name in a:names
+            let l:file = l:dir . '/' . l:name
+            if filereadable(l:file)
+                let l:files = l:files + [l:file]
+            endif
+        endfor
+    endfor
+    return l:files
+endfunction
+
+function! s:FindTags()
+    let l:files = FindFiles(['tags', 'TAGS'])
+    set tags=
+    for l:file in l:files
+        if empty(&tags)
+            let &tags = l:file
+        else
+            let &tags = &tags . ',' . l:file
+        endif
+    endfor
+endfunction
+
+function! s:FindCScope()
+    let l:files = FindFiles(['cscope.out'])
+    cscope kill -1
+    for l:file in l:files
+        execute 'cscope add ' . l:file
+    endfor
+endfunction
+
+function! AddDir(dir)
+    if !isdirectory(a:dir)
+        echoerr 'Could not add invalid directory ' . a:dir
+        return
+    endif
+
+    let l:dir = a:dir
+    while isdirectory(l:dir) && l:dir !=# fnamemodify(l:dir, ':h')
+        let s:dirs = s:dirs + [l:dir]
+        let dir = fnamemodify(dir, ':h')
+    endwhile
+
+    call uniq(sort(s:dirs))
+
+    call s:FindTags()
+    call s:FindCScope()
+endfunction
+
+augroup vimrc_files
+    autocmd!
+    autocmd BufRead * call AddDir(expand('%:p:h'))
+augroup END
 
 " To create temporary vimscript inline in a file and run in, just select it in
 " visual mode and type `:call Execute()`. Another option would be to create a
