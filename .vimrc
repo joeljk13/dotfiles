@@ -567,6 +567,15 @@ endfunction
 
 nnoremap <silent> <leader>tt :call UpdateCTags() <bar> call UpdateCScope()<cr>
 
+nnoremap <leader>fs yiw:cscope find s "<cr>
+nnoremap <leader>fd yiw:cscope find g "<cr>
+nnoremap <leader>fc yiw:cscope find c "<cr>
+nnoremap <leader>ft yiw:cscope find t "<cr>
+nnoremap <leader>fg yiw:cscope find e "<cr>
+nnoremap <leader>ff yiw:cscope find f "<cr>
+nnoremap <leader>fi yiw:cscope find i "<cr>
+nnoremap <leader>fa yiw:cscope find a "<cr>
+
 " To create temporary vimscript inline in a file and run in, just select it in
 " visual mode and type `:call Execute()`. Another option would be to create a
 " tmp.vim file with the code and then source it.
