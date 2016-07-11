@@ -2,6 +2,9 @@
 TAGS
 [Tt]ags
 
+# CScope files
+cscope.out
+
 # C/C++ pre-processed, object, and assembly files
 *.[ios]
 *.ii
