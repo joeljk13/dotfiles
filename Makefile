@@ -84,10 +84,6 @@ bin-dirs:
 scripts:
 	! [ -d ~/scripts ] || $(MAKE) -C ~/scripts
 
-.PHONY: transfer
-transfer:
-	~/.dotfiles/transfer xz zip
-
 .PHONY: clean
 clean:
 	find ~/.vim/ ~/.tmux/ ~/.*-plugins/ ~/bin/ ~/usr/ -type f -name '*~' -delete

@@ -4,32 +4,17 @@ set -e
 
 files=".dotfiles .zsh-plugins .vim-plugins .tmux .tmuxline .git-scripts .fonts"
 
-xz=false
-bzip2=false
-gzip=false
-zip=false
-tar=false
+fast=0
+small=0
 
 for arg; do
     case "$arg" in
-        (xz|lzma)
-            xz=true
+        (fast|f)
+            fast=$(($fast + 1))
             ;;
 
-        (bz|bzip2)
-            bzip2=true
-            ;;
-
-        (gz|gzip)
-            gzip=true
-            ;;
-
-        (zip)
-            zip=true
-            ;;
-
-        (tar)
-            tar=true
+        (small|s)
+            small=$(($small + 1))
             ;;
     esac
 done
@@ -37,30 +22,52 @@ done
 cd ~
 
 for file in $files; do
-    [ -d "$file" ] || [ -f "$file" ] || {
+    if ! [ -d "$file" ] && ! [ -f "$file" ]; then
         echo "$file does not exist" >&2
         exit 1
-    }
+    fi
 done
 
-if $xz; then
-    tar cJf dotfiles.tar.xz $files &
-fi
+tar cf /tmp/dotfiles.tar $files
 
-if $bzip2; then
-    tar cjf dotfiles.tar.bz2 $files &
-fi
+case "$fast" in
+    (0)
+        ;;
 
-if $gzip; then
-    tar czf dotfiles.tar.gz $files &
-fi
+    (1)
+        gzip -c -9 </tmp/dotfiles.tar >dotfiles.tar.gz &
+        zip -rq -9 dotfiles.zip $files &
+        ;;
 
-if $zip; then
-    zip -rq dotfiles.zip $files &
-fi
-
-if $tar; then
-    tar cf dotfiles.tar $files &
-fi
+    (*)
+        gzip -c </tmp/dotfiles.tar >dotfiles.tar.gz &
+        zip -rq dotfiles.zip $files &
+        ;;
+esac
 
 wait
+
+case "$small" in
+    (0)
+        ;;
+
+    (1)
+        bzip2 -c </tmp/dotfiles.tar >dotfiles.tar.bz2
+        ;;
+
+    (2)
+        bzip2 -9 -c </tmp/dotfiles.tar >dotfiles.tar.bz2
+        ;;
+
+    (3)
+        xz -T $(($(nproc) - 1)) -c </tmp/dotfiles.tar >dotfiles.tar.xz
+        ;;
+
+    (4)
+        xz -T $(($(nproc) - 1)) -c -9 </tmp/dotfiles.tar >dotfiles.tar.xz
+        ;;
+
+    (5)
+        xz -T $(($(nproc) - 1)) -c -9e </tmp/dotfiles.tar >dotfiles.tar.xz
+        ;;
+esac
