@@ -6,16 +6,19 @@ if [ ! -d "$HOME/.zsh-plugins" ]; then
 fi
 cd "$HOME/.zsh-plugins"
 
+nprocs="$(lscpu | awk '$1 == "CPU(s):" {print $2}')"
+nplugins="$(echo * | wc -w)"
+
 for plugin in *; do
     (
         cd "$HOME/.zsh-plugins/$plugin" 2>/dev/null || exit
 
-        sleep $(($RANDOM % 30))
+        sleep $(($RANDOM % ($nplugins / (($nprocs / 2) - 1)))) || exit
 
         git submodule update --init --recursive >/dev/null 2>&1
         git update-all >/dev/null 2>&1
 
-        tag="$(git tag | tail -1)"
+        tag="$(git tag | sort -V | tail -1)"
         [ -z "$tag" ] || git checkout --quiet "$tag"
     ) &
 done
