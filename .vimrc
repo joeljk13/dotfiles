@@ -505,7 +505,7 @@ function! FindFiles(names)
         for l:name in a:names
             let l:file = l:dir . '/' . l:name
             if filereadable(l:file)
-                let l:files = l:files + [l:file]
+                let l:files = l:files + [[l:dir, l:file]]
             endif
         endfor
     endfor
@@ -515,11 +515,11 @@ endfunction
 function! s:FindTags()
     let l:files = FindFiles(['tags', 'TAGS'])
     set tags=
-    for l:file in l:files
+    for l:dirfile in l:files
         if empty(&tags)
-            let &tags = l:file
+            let &tags = l:dirfile[1]
         else
-            let &tags = &tags . ',' . l:file
+            let &tags = &tags . ',' . l:dirfile[1]
         endif
     endfor
 endfunction
@@ -527,8 +527,8 @@ endfunction
 function! s:FindCScope()
     let l:files = FindFiles(['cscope.out'])
     cscope kill -1
-    for l:file in l:files
-        execute 'cscope add ' . l:file
+    for l:dirfile in l:files
+        execute 'cscope add ' . l:dirfile[1] . ' ' . l:dirfile[0]
     endfor
 endfunction
 
