@@ -178,9 +178,19 @@ bindkey -M vicmd v edit-command-line
 # So that it doesn't take forever to switch into vim-like normal mode
 export KEYTIMEOUT=100
 
-alias -g ...='../..'
-alias -g ....='../../..'
-alias -g .....='../../../..'
+dir_abbrevs()
+{
+    local abbrev dir
+
+    for a in $(seq 3 $1); do
+        abbrev="$(yes '.' | head -n $a | tr -d '\n')"
+        dir="$(yes '../' | head -n $a | tr -d '\n')"
+        alias -g $abbrev=$dir
+    done
+}
+
+dir_abbrevs 16
+
 alias -g dn='/dev/null'
 alias -g dz='/dev/zero'
 alias -g dis='&>/dev/null &!'
