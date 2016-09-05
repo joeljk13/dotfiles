@@ -184,7 +184,7 @@ dir_abbrevs()
 
     for a in $(seq 3 $1); do
         abbrev="$(yes '.' | head -n $a | tr -d '\n')"
-        dir="$(yes '../' | head -n $a | tr -d '\n')"
+        dir="$(yes '../' | head -n $(($a - 1)) | tr -d '\n')"
         alias -g $abbrev=$dir
     done
 }
