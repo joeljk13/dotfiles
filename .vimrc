@@ -234,12 +234,16 @@ augroup vimrc_indenting
     autocmd FileType gitconfig filetype indent off
 augroup END
 
-" Toggle between &number && &relativenumber and !&number && !&relativenumber
+" Toggle among both of 'number' and 'relativenumber', just 'number', and
+" neither.
 function! s:SetNumber()
     if !&number && !&relativenumber
-        set number relativenumber
-    else
+        set number
+    elseif &relativenumber
         set norelativenumber nonumber
+    else
+        " &number && !&relativenumber
+        set relativenumber
     endif
 endfunction
 
