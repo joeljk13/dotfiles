@@ -530,9 +530,9 @@ endfunction
 
 function! s:FindCScope()
     let l:files = FindFiles(['cscope.out'])
-    cscope kill -1
+    silent cscope kill -1
     for l:dirfile in l:files
-        execute 'cscope add ' . l:dirfile[1] . ' ' . l:dirfile[0]
+        silent execute 'cscope add ' . l:dirfile[1] . ' ' . l:dirfile[0]
     endfor
 endfunction
 
