@@ -142,19 +142,12 @@ fi
     up-line-or-history
 [ -z "${terminfo[knp]}" ]   || bindkey "${terminfo[knp]}"   \
     down-line-or-history
-[ -z "${terminfo[kcuu1]}" ] || bindkey "${terminfo[kcuu1]}" \
-    history-substring-search-up
-[ -z "${terminfo[kcuu2]}" ] || bindkey "${terminfo[kcuu2]}" \
-    history-substring-search-down
 [ -z "${terminfo[khome]}" ] || bindkey "${terminfo[khome]}" \
     beginning-of-line
 [ -z "${terminfo[kend]}" ]  || bindkey "${terminfo[kend]}"  \
     end-of-line
 [ -z "${terminfo[kcbt]}" ]  || bindkey "${terminfo[kcbt]}"  \
     reverse-menu-complete
-
-bindkey -M vicmd k history-substring-search-up
-bindkey -M vicmd j history-substring-search-down
 
 [ -n "${terminfo[kdch1]}" ] \
     && bindkey "${terminfo[kdch1]}" delete-char \
@@ -235,5 +228,12 @@ rm()
 source ~/.shellrc
 
 [[ -f ~/.zsh-plugins/zsh-plugins ]] && source ~/.zsh-plugins/zsh-plugins
+
+[ -z "${terminfo[kcuu1]}" ] || bindkey "${terminfo[kcuu1]}" \
+    history-substring-search-up
+[ -z "${terminfo[kcuu2]}" ] || bindkey "${terminfo[kcuu2]}" \
+    history-substring-search-down
+bindkey -M vicmd k history-substring-search-up
+bindkey -M vicmd j history-substring-search-down
 
 clear
