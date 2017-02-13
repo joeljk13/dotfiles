@@ -18,13 +18,14 @@ for plugin in *; do
     (
         cd "$HOME/.vim-plugins/$plugin" 2>/dev/null || exit
 
-        sleep $(($RANDOM % ($nplugins / (($nprocs / 2) - 1)))) || exit
+        sleep $(($RANDOM % ($nplugins / (($nprocs / 2) - 1) + 1))) || exit
+
+        git wipe >/dev/null
 
         git submodule update --init --recursive >/dev/null 2>&1
         git update-all >/dev/null 2>&1
 
-        tag="$(git tag | sort -V | tail -1)"
-        [ -z "$tag" ] || git checkout --quiet "$tag"
+        git checkout --quiet master
 
         [ "$plugin" = "vimproc.vim" ] && make
 
