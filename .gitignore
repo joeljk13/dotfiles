@@ -2,12 +2,15 @@
 TAGS
 [Tt]ags
 
-# CScope files
-cscope.out
+# Out files
+*.out
 
 # C/C++ pre-processed, object, and assembly files
 *.[ios]
 *.ii
+
+# Shared object files
+*.so
 
 # Vim/plugin files
 .*.swp
