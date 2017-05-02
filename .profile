@@ -9,4 +9,9 @@ export PAGER=less
 export LESS=-XFR
 export MANPATH="$HOME/usr/share/man:/usr/man:/usr/share/man:/usr/local/share/man"
 
-_PROFILE_HOME="$(readlink -f "$HOME")" && HOME="$_PROFILE_HOME"
+_PROFILE_HOME="$(readlink -f "$HOME")" && HOME="$_PROFILE_HOME" || \
+    _PROFILE_HOME="$HOME"
+if [ "$(readlink -f "$(pwd)")" = "$HOME" ]
+then
+    cd "$HOME"
+fi
