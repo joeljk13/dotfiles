@@ -26,7 +26,15 @@ endfunction
 
 " Enable plugins and set their settings
 
+" UltiSnips
+
+let g:UltiSnipsExpandTrigger = "<c-e>"
+let g:UltiSnipsListSnippets = "<c-l>"
+let g:UltiSnipsJumpForwardTrigger = "<c-j>"
+let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
+
 " Syntastic
+
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_aggregate_errors = 1
@@ -44,21 +52,10 @@ let g:syntastic_tex_checkers = ['chktex']
 let g:syntastic_c_check_header = 1
 let g:syntastic_cpp_check_header = g:syntastic_c_check_header
 
-let s:compiler_options = '-Wall -Wextra -Wundef -Wshadow'
-    \ . ' -Wcast-align -Wjump-misses-init -Wstrict-prototypes'
-    \ . ' -Wstrict-overflow=4 -Wwrite-strings -Waggregate-return -Wcast-qual'
-    \ . ' -Wswitch-default -Wstrict-aliasing -Wconversion -Wunreachable-code'
-    \ . ' -Wformat=2 -Winit-self -Wuninitialized -Wmissing-prototypes'
-    \ . ' -Wold-style-definition -Wdouble-promotion'
-    \ . ' -Wsuggest-attribute=noreturn -Wsuggest-attribute=format'
-    \ . ' -Wdeclaration-after-statement -Wunsafe-loop-optimizations'
-    \ . ' -Wmissing-declarations -Wmissing-field-initializers'
-    \ . ' -Wredundant-decls -Winline -Wvla -Wdisabled-optimization'
-    \ . ' -Wstack-protector -Wvector-operation-performance'
-    \ . ' -pedantic-errors -Werror -Wno-error=cast-align -Wno-error=cast-qual'
+let s:compiler_options = '-Wall -Wextra'
 
 let g:syntastic_c_compiler_options = s:compiler_options . ' -std=gnu99'
-let g:syntastic_cpp_compiler_options = s:compiler_options . ' -std=gnu++11'
+let g:syntastic_cpp_compiler_options = s:compiler_options . ' -std=gnu++17'
 
 " Colorschemes
 
@@ -143,6 +140,12 @@ let g:pymode_rope_change_signature_bind = '<leader>ps'
 " haskellmode
 
 let g:haddock_browser = "/usr/bin/firefox"
+
+" YouCompleteMe
+
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_seed_identifiers_with_syntax = 1
 
 execute pathogen#infect()
 
@@ -579,6 +582,10 @@ nnoremap <leader>fg yiw:cscope find e "<cr>
 nnoremap <leader>ff yiw:cscope find f "<cr>
 nnoremap <leader>fi yiw:cscope find i "<cr>
 nnoremap <leader>fa yiw:cscope find a "<cr>
+
+nnoremap <leader>mi :YcmCompleter GoToInclude<cr>
+nnoremap <leader>md :YcmCompleter GoTo<cr>
+nnoremap <leader>mf :YcmCompleter FixIt<cr>
 
 " To create temporary vimscript inline in a file and run in, just select it in
 " visual mode and type `:call Execute()`. Another option would be to create a

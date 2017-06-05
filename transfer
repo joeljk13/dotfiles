@@ -2,7 +2,7 @@
 
 set -e
 
-files=".dotfiles .zsh-plugins .vim-plugins .tmux .tmuxline .git-scripts .fonts"
+files=".dotfiles .zsh-plugins .vim-plugins .tmux .tmuxline .git-scripts .fonts .vim/UltiSnips"
 
 fast=0
 small=0
