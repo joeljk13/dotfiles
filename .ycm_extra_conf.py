@@ -25,4 +25,4 @@ def FlagsForFile(filename, **kwargs):
     elif ext in ('.cpp', '.cxx', '.cc', '.h', '.hpp'):
         flags += ['-x', 'c++', '-stdlib=libc++', '-std=c++17']
 
-    return {'flags': local_flags}
+    return {'flags': flags}
