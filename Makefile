@@ -90,6 +90,5 @@ scripts:
 
 .PHONY: clean
 clean:
-	find ~/.vim/ ~/.tmux/ ~/.*-plugins/ ~/bin/ ~/usr/ -type f -name '*~' -delete
-	find ~/ ~/csug/ -maxdepth 1 -type f -name '*~' -delete
 	rm -f ~/dotfiles.*
+	safe-global-clean
