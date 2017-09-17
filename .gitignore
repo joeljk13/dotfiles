@@ -5,9 +5,10 @@ TAGS
 # Out files
 *.out
 
-# C/C++ pre-processed, object, and assembly files
+# C/C++ pre-processed, object, assembly, and LTO files
 *.[ios]
 *.ii
+*.res
 
 # Shared object files
 *.so
