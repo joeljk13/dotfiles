@@ -21,8 +21,8 @@ def FlagsForFile(filename, **kwargs):
     ]
 
     if ext == '.c':
-        flags += ['-x', 'c', '-stdlib=libc', '-std=c99']
+        flags += ['-x', 'c', '-stdlib=libc', '-std=gnu99']
     elif ext in ('.cpp', '.cxx', '.cc', '.h', '.hpp'):
-        flags += ['-x', 'c++', '-stdlib=libc++', '-std=c++17']
+        flags += ['-x', 'c++', '-stdlib=libc++', '-std=gnu++17']
 
     return {'flags': flags}
